@@ -35,57 +35,82 @@
 <body>
 
 <?php
-// INSERTAR DATOS EN DB
+	require __DIR__ . '/vendor/autoload.php';
+	include('constants.php');
 
-		require __DIR__ . '/vendor/autoload.php';
-		include('constants.php');
+	$receiverId = 313698;
+	$secretKey = 'f4c0d221c20046c290f393504acc7f0ccf603f69';
 
-		$api_version = 'api_version';  // Parámetro api_version
-		$notification_token = $_REQUEST['notification_token']; //Parámetro notification_token
-		$amount = 5000;
-		
+	$api_version = $_POST["api_version"]; // Parámetro api_version
+	$notification_token = $_POST["notification_token "]; //Parámetro notification_token
+
+	try {
+		if ($api_version == '1.3') {
 		$configuration = new Khipu\Configuration();
-        $configuration->setSecret(SECRET);
-        $configuration->setReceiverId(RECEIVER_ID);
-        // $configuration->setDebug(true);
+		$configuration->setSecret($secret);
+		$configuration->setReceiverId($receiver_id);
+		$configuration->setDebug(true);
+		$client = new Khipu\ApiClient($configuration);
+		$payments = new Khipu\Client\PaymentsApi($client);
+	
+		$response = $payments->paymentsGet($notification_token);
+		if ($response->getReceiverId() == $receiver_id) 
+		{
+			if ($response->getStatus() == 'done') 
+			{
+				// marcar el pago como completo y entregar el bien o servicio
+				echo "Pago completo";
+			}
+		} 
+		else {
+			// receiver_id no coincide
+			echo "Receiver ID no coincide";
+		}
+	} 
+	
+	else {
+		// Usar versión anterior de la API de notificación
+		echo "Usar version anterior de api";
+	}
+	}
+	
+	catch (\Khipu\ApiException $exception) {
+		print_r($exception->getResponseObject());
+	}
 
-        $client = new Khipu\ApiClient($configuration);
-        $payments = new Khipu\Client\PaymentsApi($client);
+	// INSERTAR DATOS EN DB
+    // Datos de conexión
+    $servername = "190.107.177.34";
+    $database = "producto_chile";
+    $username = "producto_Samuel";
+    $password = "S@muel01";
+    $response = "prueba";
 
-        $response = $payments->paymentsGet($notification_token);
+	// Crear conexión
+    $conn = mysqli_connect($servername, $username, $password, $database);
+    // Comprueba conexión
+    if (!$conn) {
+        die("Falló conexión: " . mysqli_connect_error());
+    }
+    else
+    {
+        echo "Conexión completa";
+        // Insertar datos
+        $sql = "INSERT INTO usuario (NombreUsuario,ClaveUsuario,direccion,celular,correo) VALUES
+        ('pruebaphp','pruebaphp','pruebaphp','pruebaphp','pruebaphp')";            
 
-        // Datos de conexión
-        $servername = "190.107.177.34";
-        $database = "producto_chile";
-        $username = "producto_Samuel";
-        $password = "S@muel01";
-        $response = "prueba";
-
-        // Crear conexión
-        $conn = mysqli_connect($servername, $username, $password, $database);
-        // Comprueba conexión
-        if (!$conn) {
-            die("Falló conexión: " . mysqli_connect_error());
-        }
-        else
+        if ($conn->query($sql) === TRUE) 
         {
-            echo "Conexión completa";
-            // Insertar datos
-            $sql = "INSERT INTO usuario (NombreUsuario,ClaveUsuario,direccion,celular,correo) VALUES
-            ('pruebaphp','pruebaphp','pruebaphp','pruebaphp','pruebaphp')";
-            
-
-            if ($conn->query($sql) === TRUE) 
-            {
-                echo "<br>Registro agregado";
-            } 
-            else 
-            {
-                echo "Error: " . $sql . "<br>" . $conn->error;
-            }
+            echo "<br>Registro agregado";
+        } 
+        else 
+        {
+            echo "Error: " . $sql . "<br>" . $conn->error;
         }
-        mysqli_close($conn);
-/////////////////////////////////////////////////////
+    }
+    mysqli_close($conn);
+
+	/////////////////////////////////////////////////////
 ?>
 
 <div class="site-wrapper">
