@@ -45,7 +45,7 @@
 	$notification_token = $_POST["notification_token "]; //Parámetro notification_token
 
 	try {
-		if ($api_version == '1.3') {
+		if ($api_version == 'api_version') {
 		$configuration = new Khipu\Configuration();
 		$configuration->setSecret($secret);
 		$configuration->setReceiverId($receiver_id);
