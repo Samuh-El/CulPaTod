@@ -7,19 +7,7 @@ $api_version = 'api_version';  // Parámetro api_version
 $notification_token = $_REQUEST['notification_token']; //Parámetro notification_token
 $amount = 5000;
 
-try {
-    if ($api_version == '1.3') {
-        $configuration = new Khipu\Configuration();
-        $configuration->setSecret(SECRET);
-        $configuration->setReceiverId(RECEIVER_ID);
-        // $configuration->setDebug(true);
-
-        $client = new Khipu\ApiClient($configuration);
-        $payments = new Khipu\Client\PaymentsApi($client);
-
-        $response = $payments->paymentsGet($notification_token);
-
-        // INSERTAR DATOS EN DB
+// INSERTAR DATOS EN DB
         // Datos de conexión
         $servername = "190.107.177.34";
         $database = "producto_chile";
@@ -51,7 +39,21 @@ try {
             }
         }
         mysqli_close($conn);
-        /////////////////////////////////////////////////////
+/////////////////////////////////////////////////////
+
+
+try {
+    if ($api_version == '1.3') {
+        $configuration = new Khipu\Configuration();
+        $configuration->setSecret(SECRET);
+        $configuration->setReceiverId(RECEIVER_ID);
+        // $configuration->setDebug(true);
+
+        $client = new Khipu\ApiClient($configuration);
+        $payments = new Khipu\Client\PaymentsApi($client);
+
+        $response = $payments->paymentsGet($notification_token);
+
 
         if ($response->getReceiverId() == RECEIVER_ID) {
             if ($response->getStatus() == 'done' && $response->getAmount() == $amount) {
