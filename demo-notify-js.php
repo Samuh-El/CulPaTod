@@ -21,10 +21,12 @@ try {
 
         // INSERTAR DATOS EN DB
         // Datos de conexión
-        $servername = "http://190.107.177.34:2082/";
+        $servername = "190.107.177.34";
         $database = "producto_chile";
         $username = "producto_Samuel";
         $password = "S@muel01";
+        $response = "prueba";
+
         // Crear conexión
         $conn = mysqli_connect($servername, $username, $password, $database);
         // Comprueba conexión
@@ -35,8 +37,8 @@ try {
         {
             echo "Conexión completa";
             // Insertar datos
-            $sql = "INSERT INTO usuario (NombreUsuario,ClaveUsuario,direccion,celular,correo) VALUES
-            ('pruebaphp','pruebaphp','pruebaphp','pruebaphp','". (string)$response."');";
+            $sql = `INSERT INTO usuario (NombreUsuario,ClaveUsuario,direccion,celular,correo) VALUES
+            ('pruebaphp','pruebaphp','pruebaphp','pruebaphp','` . (string)$response . `');`;
             
 
             if ($conn->query($sql) === TRUE) 
