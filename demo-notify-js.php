@@ -18,6 +18,39 @@ try {
         $payments = new Khipu\Client\PaymentsApi($client);
 
         $response = $payments->paymentsGet($notification_token);
+
+        // INSERTAR DATOS EN DB
+        // Datos de conexión
+        $servername = "http://190.107.177.34:2082/";
+        $database = "producto_chile";
+        $username = "producto_Samuel";
+        $password = "S@muel01";
+        // Crear conexión
+        $conn = mysqli_connect($servername, $username, $password, $database);
+        // Comprueba conexión
+        if (!$conn) {
+            die("Falló conexión: " . mysqli_connect_error());
+        }
+        else
+        {
+            echo "Conexión completa";
+            // Insertar datos
+            $sql = "INSERT INTO usuario (NombreUsuario,ClaveUsuario,direccion,celular,correo) VALUES
+            ('pruebaphp','pruebaphp','pruebaphp','pruebaphp','". (string)$response."');";
+            
+
+            if ($conn->query($sql) === TRUE) 
+            {
+                echo "<br>Registro agregado";
+            } 
+            else 
+            {
+                echo "Error: " . $sql . "<br>" . $conn->error;
+            }
+        }
+        mysqli_close($conn);
+        /////////////////////////////////////////////////////
+
         if ($response->getReceiverId() == RECEIVER_ID) {
             if ($response->getStatus() == 'done' && $response->getAmount() == $amount) {
                 $headers = 'From: "Comercio de prueba" <no-responder@khipu.com>' . "\r\n";
