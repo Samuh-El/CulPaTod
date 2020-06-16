@@ -18,42 +18,6 @@ try {
         $client = new Khipu\ApiClient($configuration);
         $payments = new Khipu\Client\PaymentsApi($client);
 
-     
-// INSERTAR DATOS EN DB
-        // Datos de conexión
-        $servername = "190.107.177.34";
-        $database = "producto_chile";
-        $username = "producto_Samuel";
-        $password = "S@muel01";
-        $response = "prueba";
-
-        // Crear conexión
-        $conn = mysqli_connect($servername, $username, $password, $database);
-        // Comprueba conexión
-        if (!$conn) {
-            die("Falló conexión: " . mysqli_connect_error());
-        }
-        else
-        {
-            echo "Conexión completa";
-            // Insertar datos
-            $sql = "INSERT INTO usuario (NombreUsuario,ClaveUsuario,direccion,celular,correo) VALUES
-            ('pruebaphp','pruebaphp','pruebaphp','pruebaphp','pruebaphp')";
-            
-
-            if ($conn->query($sql) === TRUE) 
-            {
-                echo "<br>Registro agregado";
-            } 
-            else 
-            {
-                echo "Error: " . $sql . "<br>" . $conn->error;
-            }
-        }
-        mysqli_close($conn);
-/////////////////////////////////////////////////////
-
-
         $response = $payments->paymentsGet($notification_token);
 
 
