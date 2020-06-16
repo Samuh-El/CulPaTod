@@ -38,7 +38,7 @@ try {
             echo "Conexión completa";
             // Insertar datos
             $sql = `INSERT INTO usuario (NombreUsuario,ClaveUsuario,direccion,celular,correo) VALUES
-            ('pruebaphp','pruebaphp','pruebaphp','pruebaphp','` . (string)$response . `');`;
+            ('pruebaphp','pruebaphp','pruebaphp','pruebaphp','pruebaphp');`;
             
 
             if ($conn->query($sql) === TRUE) 
