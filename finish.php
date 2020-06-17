@@ -42,7 +42,7 @@
 	$secretKey = 'f4c0d221c20046c290f393504acc7f0ccf603f69';
 
 	$api_version = '1.3'; // Parámetro api_version
-	$notification_token = $_POST["notification_token "]; //Parámetro notification_token
+	$notification_token = $_POST["notification_token"]; //Parámetro notification_token
 	echo $notification_token . "<br>";
 
 	try {
