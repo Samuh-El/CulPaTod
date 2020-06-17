@@ -45,33 +45,33 @@
 	$notification_token = $_POST["notification_token "]; //Parámetro notification_token
 
 	try {
-		if ($api_version == 'api_version') {
-		$configuration = new Khipu\Configuration();
-		$configuration->setSecret($secret);
-		$configuration->setReceiverId($receiver_id);
-		$configuration->setDebug(true);
-		$client = new Khipu\ApiClient($configuration);
-		$payments = new Khipu\Client\PaymentsApi($client);
-	
-		$response = $payments->paymentsGet($notification_token);
-		if ($response->getReceiverId() == $receiver_id) 
-		{
-			if ($response->getStatus() == 'done') 
+		//if ($api_version == 'api_version') {
+			$configuration = new Khipu\Configuration();
+			$configuration->setSecret($secret);
+			$configuration->setReceiverId($receiver_id);
+			$configuration->setDebug(true);
+			$client = new Khipu\ApiClient($configuration);
+			$payments = new Khipu\Client\PaymentsApi($client);
+		
+			$response = $payments->paymentsGet($notification_token);
+			if ($response->getReceiverId() == $receiver_id) 
 			{
-				// marcar el pago como completo y entregar el bien o servicio
-				echo "Pago completo";
-			}
-		} 
+				if ($response->getStatus() == 'done') 
+				{
+					// marcar el pago como completo y entregar el bien o servicio
+					echo "Pago completo";
+				}
+			} 
 		else {
 			// receiver_id no coincide
 			echo "Receiver ID no coincide";
-		}
+		//}
 	} 
 	
-	else {
-		// Usar versión anterior de la API de notificación
-		echo "Usar version anterior de api";
-	}
+	// else {
+	// 	// Usar versión anterior de la API de notificación
+	// 	echo "Usar version anterior de api";
+	// }
 	}
 	
 	catch (\Khipu\ApiException $exception) {
