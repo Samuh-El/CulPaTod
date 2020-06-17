@@ -46,13 +46,12 @@
 		$amount = 5000;
 
 		$notificationToken = $_POST["notification_token"];
-		echo $notificationToken . "<br>";
 
 		$configuration = new Khipu\Configuration();
 		$configuration->setSecret('f4c0d221c20046c290f393504acc7f0ccf603f69');
 		$configuration->setReceiverId('313698');
 		$configuration->setPlatform('demo-client','2.0');
-		$notificationToken = trim(file_get_contents("../NOTIFICATION_TOKEN"));
+		$notificationToken = trim(file_get_contents("../notification_token"));
 		# $configuration->setDebug(true);
 		$client = new Khipu\ApiClient($configuration);
 		$payments = new Khipu\Client\PaymentsApi($client);
