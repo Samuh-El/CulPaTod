@@ -40,12 +40,12 @@
 
 	$receiverId = 313698;
 	$secretKey = 'f4c0d221c20046c290f393504acc7f0ccf603f69';
+	$amount = 5000;
 
-	$api_version = '1.3'; // Parámetro api_version
+	$api_version = '2.0'; // Parámetro api_version
 	try{
 		$notification_token = $_POST['notification_token']; //Parámetro notification_token
-		echo "Entro a recibir el token";
-		echo $notification_token;
+		echo "Entro a recibir el token <br>";
 	}
 	catch(Exception $e)
 	{
@@ -54,7 +54,7 @@
 	
 
 	try {
-		if ($api_version == '1.3') {
+		if ($api_version == '2.0') {
 			echo "entro al if";
 			$configuration = new Khipu\Configuration();
 			echo "<br>paso config 1";
@@ -62,13 +62,13 @@
 			echo "<br>set 1";
 			$configuration->setReceiverId($receiver_id);
 			echo "<br>set 2";
+			$configuration->getReceiverId();
 			$configuration->setDebug(true);
 			echo "<br>set 3";
 			$client = new Khipu\ApiClient($configuration);
 			echo "<br>khipuaplicattion";
 			$payments = new Khipu\Client\PaymentsApi($client);
-			echo "<br>paymenrs api";
-		
+			echo "<br>payments api";		
 			$response = $payments->paymentsGet($notification_token);
 			echo "<br>payments get";
 
