@@ -38,63 +38,50 @@
 	require __DIR__ . '/vendor/autoload.php';
 	include('constants.php');
 
-	$receiverId = 313698;
-	$secretKey = 'f4c0d221c20046c290f393504acc7f0ccf603f69';
-	$amount = 5000;
-
-	$api_version = '2.0'; // Parámetro api_version
-	try{
-		$notification_token = $_POST['notification_token']; //Parámetro notification_token
-		echo "Entro a recibir el token <br>";
-	}
-	catch(Exception $e)
-	{
-		echo "Error obtener token <br>";
-	}
-	
-
 	try {
-		if ($api_version == '2.0') {
-			echo "entro al if";
-			$configuration = new Khipu\Configuration();
-			echo "<br>paso config 1";
-			$configuration->setSecret($secret);
-			echo "<br>set 1";
-			$configuration->setReceiverId($receiver_id);
-			echo "<br>set 2";
-			$configuration->getReceiverId();
-			$configuration->setDebug(true);
-			echo "<br>set 3";
-			$client = new Khipu\ApiClient($configuration);
-			echo "<br>khipuaplicattion";
-			$payments = new Khipu\Client\PaymentsApi($client);
-			echo "<br>payments api";		
-			$response = $payments->paymentsGet($notification_token);
-			echo "<br>payments get";
 
-			if ($response->getReceiverId() == $receiver_id) 
-			{
-				if ($response->getStatus() == 'done') 
-				{
+		$receiver_id = 313698;
+		$secret = 'f4c0d221c20046c290f393504acc7f0ccf603f69';
+	
+		$api_version = '2.0';  // Parámetro api_version
+		$notification_token = trim(file_get_contents("../notification_token"));//Parámetro notification_token
+		echo $notification_token;
+		$amount = 5000;
+
+		if ($api_version == '2.0') {
+			echo "Entro al if<br>";
+			$configuration = new Khipu\Configuration();
+			$configuration->setSecret($secret);
+			$configuration->setReceiverId($receiver_id);
+			$configuration->setDebug(true);
+			echo "Paso a las variables<br>";
+
+			$client = new Khipu\ApiClient($configuration);
+			$payments = new Khipu\Client\PaymentsApi($client);
+			echo "Pasó las otras variables xD<br>";
+
+			$response = $payments->paymentsGet($notification_token);
+			echo "paso el paymentsGet<br>";
+
+			if ($response->getReceiverId() == $receiver_id) {
+				echo "Entro al if getReceiverId<br>";
+				if ($response->getStatus() == 'done' && $response->getAmount() == $amount) {
 					// marcar el pago como completo y entregar el bien o servicio
-					echo "Pago completo";
+					echo "Pago completo<br>";
 				}
-			} 
-		else {
-			// receiver_id no coincide
-			echo "Receiver ID no coincide";
+			} else {
+				// receiver_id no coincide
+				echo "receiber id no coincide<br>";
+			}
+		} else {
+			// Usar versión anterior de la API de notificación
+			echo "usar version anterior de la api<br>";
 		}
-	} 
-	
-	else {
-		// Usar versión anterior de la API de notificación
-		echo "Usar version anterior de api";
-	}
-	}
-	
-	catch (\Khipu\ApiException $exception) {
+	} catch (\Khipu\ApiException $exception) {
+		echo "Entro al catch<br>";
 		print_r($exception->getResponseObject());
 	}
+
 
 	// INSERTAR DATOS EN DB
     // Datos de conexión
