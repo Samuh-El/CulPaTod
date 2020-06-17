@@ -45,13 +45,13 @@ try
     $api_version = '2.0';  // Parámetro api_version
     $amount = 5000;
 
-    $notificationToken = $_POST["notification_token"];
+    //$notificationToken = $_POST["notification_token"];
 
     $configuration = new Khipu\Configuration();
     $configuration->setSecret('f4c0d221c20046c290f393504acc7f0ccf603f69');
     $configuration->setReceiverId('313698');
     $configuration->setPlatform('demo-client','2.0');
-    //$notificationToken = trim(file_get_contents("../notification_token"));
+    $notificationToken = trim(file_get_contents("../notification_token"));
     # $configuration->setDebug(true);
     $client = new Khipu\ApiClient($configuration);
     $payments = new Khipu\Client\PaymentsApi($client);
@@ -103,6 +103,11 @@ try
     }
     mysqli_close($conn);
     /////////////////////////////////////////////////////
+}
+
+catch(Exception $e)
+{
+
 }
 ?>
 
