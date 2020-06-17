@@ -46,14 +46,27 @@
 
 	try {
 		//if ($api_version == 'api_version') {
+			try{
 			$configuration = new Khipu\Configuration();
 			$configuration->setSecret($secret);
 			$configuration->setReceiverId($receiver_id);
 			$configuration->setDebug(true);
 			$client = new Khipu\ApiClient($configuration);
 			$payments = new Khipu\Client\PaymentsApi($client);
+			}
+			catch(\Khipu\ApiException $exception) {
+				echo "error variables";
+			}
 		
+			try {
 			$response = $payments->paymentsGet($notification_token);
+			}
+			catch (\Khipu\ApiException $exception)
+			{
+				echo "error obtener paymentsGet";
+			}
+
+
 			if ($response->getReceiverId() == $receiver_id) 
 			{
 				if ($response->getStatus() == 'done') 
