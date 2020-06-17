@@ -44,8 +44,9 @@
 	$api_version = '1.3'; // Parámetro api_version
 	try{
 		$notification_token = $_POST['notification_token']; //Parámetro notification_token
+		echo "Entro a recibir el token";
 	}
-	catch(\Khipu\ApiException $exception)
+	catch(Exception $e)
 	{
 		echo "Error obtener token <br>";
 	}
