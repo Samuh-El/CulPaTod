@@ -40,13 +40,13 @@
 
 	try 
 	{
-
 		$receiver_id = 313698;
 		$secret = 'f4c0d221c20046c290f393504acc7f0ccf603f69';
 		$api_version = '2.0';  // Parámetro api_version
 		$amount = 5000;
 
 		$notificationToken = $_POST["notification_token"];
+		echo $notificationToken . "<br>";
 
 		$configuration = new Khipu\Configuration();
 		$configuration->setSecret('f4c0d221c20046c290f393504acc7f0ccf603f69');
