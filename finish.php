@@ -41,31 +41,27 @@
 	$receiverId = 313698;
 	$secretKey = 'f4c0d221c20046c290f393504acc7f0ccf603f69';
 
-	$api_version = $_POST["api_version"]; // Parámetro api_version
+	$api_version = '1.3'; // Parámetro api_version
 	$notification_token = $_POST["notification_token "]; //Parámetro notification_token
 
 	try {
-		//if ($api_version == 'api_version') {
-			try{
+		if ($api_version == '1.3') {
+			echo "<br>entro al if";
 			$configuration = new Khipu\Configuration();
+			echo "<br>paso config 1";
 			$configuration->setSecret($secret);
+			echo "<br>set 1";
 			$configuration->setReceiverId($receiver_id);
+			echo "<br>set 2";
 			$configuration->setDebug(true);
+			echo "<br>set 3";
 			$client = new Khipu\ApiClient($configuration);
+			echo "<br>khipuaplicattion";
 			$payments = new Khipu\Client\PaymentsApi($client);
-			}
-			catch(\Khipu\ApiException $exception) {
-				echo "error variables";
-			}
+			echo "<br>paymenrs api";
 		
-			try {
 			$response = $payments->paymentsGet($notification_token);
-			}
-			catch (\Khipu\ApiException $exception)
-			{
-				echo "error obtener paymentsGet";
-			}
-
+			echo "<br>payments get";
 
 			if ($response->getReceiverId() == $receiver_id) 
 			{
@@ -78,13 +74,13 @@
 		else {
 			// receiver_id no coincide
 			echo "Receiver ID no coincide";
-		//}
+		}
 	} 
 	
-	// else {
-	// 	// Usar versión anterior de la API de notificación
-	// 	echo "Usar version anterior de api";
-	// }
+	else {
+		// Usar versión anterior de la API de notificación
+		echo "Usar version anterior de api";
+	}
 	}
 	
 	catch (\Khipu\ApiException $exception) {
