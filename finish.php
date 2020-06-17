@@ -45,6 +45,7 @@
 	try{
 		$notification_token = $_POST['notification_token']; //Parámetro notification_token
 		echo "Entro a recibir el token";
+		echo $notification_token;
 	}
 	catch(Exception $e)
 	{
