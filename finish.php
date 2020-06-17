@@ -38,84 +38,78 @@
 	require __DIR__ . '/vendor/autoload.php';
 	include('constants.php');
 
-	try {
+	try 
+	{
 
 		$receiver_id = 313698;
 		$secret = 'f4c0d221c20046c290f393504acc7f0ccf603f69';
-	
 		$api_version = '2.0';  // Parámetro api_version
-		$notification_token = trim(file_get_contents("../notification_token"));//Parámetro notification_token
-		echo $notification_token;
 		$amount = 5000;
 
-		if ($api_version == '2.0') {
-			echo "Entro al if<br>";
-			$configuration = new Khipu\Configuration();
-			$configuration->setSecret($secret);
-			$configuration->setReceiverId($receiver_id);
-			$configuration->setDebug(true);
-			echo "Paso a las variables<br>";
+		$notificationToken = $_POST["notification_token"];
 
-			$client = new Khipu\ApiClient($configuration);
-			$payments = new Khipu\Client\PaymentsApi($client);
-			echo "Pasó las otras variables xD<br>";
+		$configuration = new Khipu\Configuration();
+		$configuration->setSecret('f4c0d221c20046c290f393504acc7f0ccf603f69');
+		$configuration->setReceiverId('313698');
+		$configuration->setPlatform('demo-client','2.0');
+		$notificationToken = trim(file_get_contents("../NOTIFICATION_TOKEN"));
+		# $configuration->setDebug(true);
+		$client = new Khipu\ApiClient($configuration);
+		$payments = new Khipu\Client\PaymentsApi($client);
 
-			$response = $payments->paymentsGet($notification_token);
-			echo "paso el paymentsGet<br>";
+		try {
+			$response = $payments->paymentsGet($notificationToken);
 
-			if ($response->getReceiverId() == $receiver_id) {
-				echo "Entro al if getReceiverId<br>";
-				if ($response->getStatus() == 'done' && $response->getAmount() == $amount) {
-					// marcar el pago como completo y entregar el bien o servicio
-					echo "Pago completo<br>";
-				}
-			} else {
-				// receiver_id no coincide
-				echo "receiber id no coincide<br>";
-			}
-		} else {
-			// Usar versión anterior de la API de notificación
-			echo "usar version anterior de la api<br>";
+			print "PAYMENT_ID: " . $response->getPaymentId() . "\n";
+			print "TRANSACTION_ID: " . $response->getTransactionId() . "\n";
+			print "AMOUNT: " . $response->getAmount() . "\n";
+			print "CURRENCY: " . $response->getCurrency() . "\n";
+			print "STATUS: " . $response->getStatus() . "\n";
+		} 
+		
+		catch (Exception $e) 
+		{
+			echo $e->getMessage();
 		}
-	} catch (\Khipu\ApiException $exception) {
-		echo "Entro al catch<br>";
-		print_r($exception->getResponseObject());
+
+		// INSERTAR DATOS EN DB
+		// Datos de conexión
+		$servername = "190.107.177.34";
+		$database = "producto_chile";
+		$username = "producto_Samuel";
+		$password = "S@muel01";
+		$response = "prueba";
+
+		// Crear conexión
+		$conn = mysqli_connect($servername, $username, $password, $database);
+		// Comprueba conexión
+		if (!$conn) {
+			die("<br>Falló conexión: " . mysqli_connect_error());
+		}
+		else
+		{
+			echo "<br>Conexión completa";
+			// Insertar datos
+			$sql = "INSERT INTO usuario (NombreUsuario,ClaveUsuario,direccion,celular,correo) VALUES
+			('pruebaphp','pruebaphp','pruebaphp','pruebaphp','pruebaphp')";            
+
+			if ($conn->query($sql) === TRUE) 
+			{
+				echo "<br>Registro agregado";
+			} 
+			else 
+			{
+				echo "<br>Error: " . $sql . "<br>" . $conn->error;
+			}
+		}
+		mysqli_close($conn);
+		/////////////////////////////////////////////////////
+	}	
+
+	catch (Exception $e)
+	{
+
 	}
-
-
-	// INSERTAR DATOS EN DB
-    // Datos de conexión
-    $servername = "190.107.177.34";
-    $database = "producto_chile";
-    $username = "producto_Samuel";
-    $password = "S@muel01";
-    $response = "prueba";
-
-	// Crear conexión
-    $conn = mysqli_connect($servername, $username, $password, $database);
-    // Comprueba conexión
-    if (!$conn) {
-        die("Falló conexión: " . mysqli_connect_error());
-    }
-    else
-    {
-        echo "Conexión completa";
-        // Insertar datos
-        $sql = "INSERT INTO usuario (NombreUsuario,ClaveUsuario,direccion,celular,correo) VALUES
-        ('pruebaphp','pruebaphp','pruebaphp','pruebaphp','pruebaphp')";            
-
-        if ($conn->query($sql) === TRUE) 
-        {
-            echo "<br>Registro agregado";
-        } 
-        else 
-        {
-            echo "Error: " . $sql . "<br>" . $conn->error;
-        }
-    }
-    mysqli_close($conn);
-
-	/////////////////////////////////////////////////////
 ?>
 
 <div class="site-wrapper">
