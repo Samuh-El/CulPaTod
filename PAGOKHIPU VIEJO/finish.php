@@ -34,84 +34,49 @@
 
 <body>
 
-<?php
-require __DIR__ . '/vendor/autoload.php';
-include('constants.php');
-
-try 
-{
-    $receiver_id = 313698;
-    $secret = 'f4c0d221c20046c290f393504acc7f0ccf603f69';
-    $api_version = '2.0';  // Parámetro api_version
-    $amount = 5000;
-
-    //$notificationToken = $_POST["notification_token"];
-
-    $configuration = new Khipu\Configuration();
-    $configuration->setSecret('f4c0d221c20046c290f393504acc7f0ccf603f69');
-    $configuration->setReceiverId('313698');
-    $configuration->setPlatform('demo-client','2.0');
-    $notificationToken = trim(file_get_contents("../notification_token"));
-    # $configuration->setDebug(true);
-    $client = new Khipu\ApiClient($configuration);
-    $payments = new Khipu\Client\PaymentsApi($client);
-
-    try {
-        $response = $payments->paymentsGet($notificationToken);
-
-        print "PAYMENT_ID: " . $response->getPaymentId() . "\n";
-        print "TRANSACTION_ID: " . $response->getTransactionId() . "\n";
-        print "AMOUNT: " . $response->getAmount() . "\n";
-        print "CURRENCY: " . $response->getCurrency() . "\n";
-        print "STATUS: " . $response->getStatus() . "\n";
-    } 
-    
-    catch (Exception $e) 
-    {
-        echo $e->getMessage();
-    }
-
-    // INSERTAR DATOS EN DB
-    // Datos de conexión
-    $servername = "190.107.177.34";
-    $database = "producto_chile";
-    $username = "producto_Samuel";
-    $password = "S@muel01";
-    $response = "prueba";
-
-    // Crear conexión
-    $conn = mysqli_connect($servername, $username, $password, $database);
-    // Comprueba conexión
-    if (!$conn) {
-        die("<br>Falló conexión: " . mysqli_connect_error());
-    }
-    else
-    {
-        echo "<br>Conexión completa";
-        // Insertar datos
-        $sql = "INSERT INTO usuario (NombreUsuario,ClaveUsuario,direccion,celular,correo) VALUES
-        ('pruebaphp','pruebaphp','pruebaphp','pruebaphp','pruebaphp')";            
-
-        if ($conn->query($sql) === TRUE) 
-        {
-            echo "<br>Registro agregado";
-        } 
-        else 
-        {
-            echo "<br>Error: " . $sql . "<br>" . $conn->error;
-        }
-    }
-    mysqli_close($conn);
-    /////////////////////////////////////////////////////
-}
-
-catch(Exception $e)
-{
-
-}
-?>
-
 <div class="site-wrapper">
+
+<?php
+
+	require __DIR__ . '/vendor/autoload.php';
+	include('constants.php');
+
+	$api_version = '2.0';  // Parámetro api_version
+	$notification_token = $_GET['notification_token']; //Parámetro notification_token
+	$amount = 5000;
+
+	try {
+		echo "<br>entró al try";
+		if ($api_version == '2.0') {
+			echo "<br>entró al if api_version";
+			$configuration = new Khipu\Configuration();
+			$configuration->setSecret(SECRET);
+			$configuration->setReceiverId(RECEIVER_ID);
+			$configuration->setDebug(true);
+
+			$client = new Khipu\ApiClient($configuration);
+			$payments = new Khipu\Client\PaymentsApi($client);
+
+			echo "<br>antes del response";
+			$response = $payments->paymentsGet($notification_token);
+			echo "<br>paso el response";
+
+			if ($response->getReceiverId() == RECEIVER_ID) {
+				if ($response->getStatus() == 'done' && $response->getAmount() == $amount) {
+					echo "<br>PASO LA VOLA POR FIN!";
+				}
+			} else {
+				// receiver_id no coincide
+				echo "<br>receiver_id no coincide";
+			}
+		} else {
+			// Usar versión anterior de la API de notificación
+			echo "<br>Usar versión anterior de la API de notificación";
+		}
+	} catch (\Khipu\ApiException $exception) {
+		print_r($exception->getResponseObject());
+	}
+?>
 
 	<div class="site-wrapper-inner">
 
