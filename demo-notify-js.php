@@ -5,10 +5,10 @@ include('constants.php');
 
 $api_version = $_REQUEST['api_version'];  // Parámetro api_version
 $notification_token = $_REQUEST['notification_token']; //Parámetro notification_token
-$amount = 100;
+$amount = 5000;
 
 try {
-    if ($api_version == '1.3') {
+    if ($api_version == 'api_version') {
         $configuration = new Khipu\Configuration();
         $configuration->setSecret(SECRET);
         $configuration->setReceiverId(RECEIVER_ID);

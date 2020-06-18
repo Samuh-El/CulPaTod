@@ -2,7 +2,7 @@
 require __DIR__ . '/vendor/autoload.php';
 include('constants.php');
 //$_REQUEST['email']
-if (!filter_var($_REQUEST['samuelgajardo@outlook.com'], FILTER_VALIDATE_EMAIL)) {
+if (!filter_var($_REQUEST['email'], FILTER_VALIDATE_EMAIL)) {
 	header('Location: index.php?invalid=true');
 	return;
 }

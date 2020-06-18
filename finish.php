@@ -36,6 +36,44 @@
 
 <div class="site-wrapper">
 
+<?php
+	$api_version = $_REQUEST['api_version'];  // Parámetro api_version
+	$notification_token = $_REQUEST['notification_token']; //Parámetro notification_token
+	$amount = 5000;
+
+	try {
+		echo "entró al try";
+		if ($api_version == 'api_version') {
+			echo "entró al if api_version";
+			$configuration = new Khipu\Configuration();
+			$configuration->setSecret(SECRET);
+			$configuration->setReceiverId(RECEIVER_ID);
+			$configuration->setDebug(true);
+
+			$client = new Khipu\ApiClient($configuration);
+			$payments = new Khipu\Client\PaymentsApi($client);
+
+			echo "antes del response";
+			$response = $payments->paymentsGet($notification_token);
+			echo "paso el response";
+
+			if ($response->getReceiverId() == RECEIVER_ID) {
+				if ($response->getStatus() == 'done' && $response->getAmount() == $amount) {
+					echo "PASO LA VOLA POR FIN!";
+				}
+			} else {
+				// receiver_id no coincide
+				echo "receiver_id no coincide";
+			}
+		} else {
+			// Usar versión anterior de la API de notificación
+			echo "Usar versión anterior de la API de notificación";
+		}
+	} catch (\Khipu\ApiException $exception) {
+		print_r($exception->getResponseObject());
+	}
+?>
+
 	<div class="site-wrapper-inner">
 
 		<div class="cover-container">
