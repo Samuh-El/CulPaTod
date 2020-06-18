@@ -14,7 +14,7 @@ echo "<br>declaro variables";
 try {
     echo "<br>entro al try";
     $ops = array(
-        "notify_url" => "https://culturaparatodos.herokuapp.com/",
+        "notify_url" => "https://culturaparatodos.herokuapp.com/demo-notify-js.php",
     );
     echo "<br>antes response";
     $response = $payments->paymentsPost('Pago de demo', 'CLP', 1000, $ops);
@@ -30,12 +30,12 @@ try {
 $notificationToken = $_REQUEST['notification_token'];
 $client = new Khipu\ApiClient($configuration);
 $payments = new Khipu\Client\PaymentsApi($client);
-echo "<br>declaro variables 2";
+echo "<br>declaro variables 2<br>";
 
 try {
-    echo "<br>try 2";
+    echo "<br>try 2<br>";
     $response = $payments->paymentsGet($notificationToken);
-    echo "<br>paso response2";
+    echo "<br>paso response2<br>";
 
     print "PAYMENT_ID: " . $response->getPaymentId() . "\n";
     print "TRANSACTION_ID: " . $response->getTransactionId() . "\n";
@@ -44,6 +44,6 @@ try {
     print "STATUS: " . $response->getStatus() . "\n";
 
 } catch (Exception $e) {
-    echo "<br>entro al catch2";
+    echo "<br>entro al catch2<br>";
     echo $e->getMessage();
 }
