@@ -24,9 +24,9 @@ try {
         "notify_url" => NOTIFY_URL,
         "notify_api_version" => "1.3"
     );
-    $response = $payments->paymentsPost("Ticket de evento" //Motivo de la compra
+    $response = $payments->paymentsPost("Ejemplo de pago usando biblioteca Javascript de khipu" //Motivo de la compra
         , "CLP" //Moneda
-        , 5000.0 //Monto
+        , 100.0 //Monto
         , $opts );
 
     header('Location: process.php?id='. $response->getPaymentId().'&url='.$response->getPaymentUrl().'&ready_for_terminal='.$response->getReadyForTerminal());
