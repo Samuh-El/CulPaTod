@@ -37,6 +37,10 @@
 <div class="site-wrapper">
 
 <?php
+
+	require __DIR__ . '/vendor/autoload.php';
+	include('constants.php');
+
 	$api_version = $_REQUEST['2.0'];  // Parámetro api_version
 	$notification_token = $_REQUEST['notification_token']; //Parámetro notification_token
 	$amount = 5000;
