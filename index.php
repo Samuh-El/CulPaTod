@@ -27,14 +27,15 @@ try {
     echo "<br>" . $e->getMessage();
 }
 ////////////////////////
-$notificationToken = trim(file_get_contents("../NOTIFICATION_TOKEN"));
+$notificationToken = $_REQUEST['notification_token'];
 $client = new Khipu\ApiClient($configuration);
 $payments = new Khipu\Client\PaymentsApi($client);
-echo "declaro variables 2";
+echo "<br>declaro variables 2";
 
 try {
     echo "<br>try 2";
     $response = $payments->paymentsGet($notificationToken);
+    echo "<br>paso response2";
 
     print "PAYMENT_ID: " . $response->getPaymentId() . "\n";
     print "TRANSACTION_ID: " . $response->getTransactionId() . "\n";
