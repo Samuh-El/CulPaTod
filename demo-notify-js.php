@@ -23,6 +23,7 @@ try {
         $configuration->setReceiverId(RECEIVER_ID);
         //$configuration->setDebug(true);
 
+        
         $client = new Khipu\ApiClient($configuration);
         $payments = new Khipu\Client\PaymentsApi($client);
 
