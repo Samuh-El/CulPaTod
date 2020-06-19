@@ -8,7 +8,6 @@ heroku logs --app 'nombre_de_aplicacion'*/
 $api_version = $_POST['api_version'];  // Parámetro api_version
 $notification_token = $_POST['notification_token']; //Parámetro notification_token
 $idPago = $_GET['id']; // Obtener el id de pago generado
-$idPagoString;
 
 // GET -> Query Params -> www.hola.com/hola?queryParam=valor
 // POST -> Body -> 
@@ -42,16 +41,6 @@ try {
             file_put_contents("php://stderr", (string)$value.PHP_EOL);
         }
 
-        // id pago
-        foreach ($idPago as $key => $value) {
-            file_put_contents("php://stderr", (string)$key.PHP_EOL);
-            file_put_contents("php://stderr", (string)$value.PHP_EOL);
-            if ((string)$key=='payment_id')
-            {
-                $idPagoString = (string)$value;
-            }
-        }
-
         if ($response->getReceiverId() == RECEIVER_ID) {
             if ($response->getStatus() == 'done'
              && $response->getAmount() == $amount
@@ -76,7 +65,7 @@ try {
                     'asd','asd','asd',123,'asd','";
                 $query2="')";
                 
-                $sql= $query1 . $idPagoString . $query2;
+                $sql= $query1 . array_column($idPago,'payment_id') . $query2;
 
                 if ($conn->query($sql) === TRUE) {
                     echo "Registro insertado";
