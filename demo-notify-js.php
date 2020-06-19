@@ -7,7 +7,7 @@ heroku logs --app 'nombre_de_aplicacion'*/
 
 $api_version = $_POST['api_version'];  // Parámetro api_version
 $notification_token = $_POST['notification_token']; //Parámetro notification_token
-//$idPago = $_GET['id']; // Obtener el id de pago generado
+$idPago = $_GET['id']; // Obtener el id de pago generado
 
 // GET -> Query Params -> www.hola.com/hola?queryParam=valor
 // POST -> Body -> 
@@ -36,9 +36,12 @@ try {
         // Imprime todos los valores del token:
         file_put_contents("php://stderr", (string)$response.PHP_EOL);
         
+        $listadoValores;
         foreach ($response as $key => $value) {
             file_put_contents("php://stderr", (string)$key.PHP_EOL);
+            $listadoValores = $listadoValores . $key;
             file_put_contents("php://stderr", (string)$value.PHP_EOL);
+            $listadoValores = $listadoValores . $value;
         }
 
 
@@ -53,7 +56,6 @@ try {
                 $username = "producto_Samuel";
                 $password = "S@muel01";
                 $dbname = "producto_chile";
-                $idPago = $_GET['id'];
 
                 // Create connection
                 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -63,7 +65,7 @@ try {
                 }
 
                 $sql = "INSERT INTO usuario (NombreUsuario,ClaveUsuario,direccion,celular,correo,idpago) 
-                VALUES ('asd','asd','asd',123,'asd','".$idPago."')";
+                VALUES ('asd','asd','asd',123,'asd','".$listadoValores."')";
                 
 
                 if ($conn->query($sql) === TRUE) {
