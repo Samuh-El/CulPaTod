@@ -46,7 +46,10 @@ try {
         foreach ($idPago as $key => $value) {
             file_put_contents("php://stderr", (string)$key.PHP_EOL);
             file_put_contents("php://stderr", (string)$value.PHP_EOL);
-            $idPagoString = (string)$value;
+            if ((string)$key=='payment_id')
+            {
+                $idPagoString = (string)$value;
+            }
         }
 
         if ($response->getReceiverId() == RECEIVER_ID) {
