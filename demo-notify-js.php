@@ -27,6 +27,7 @@ try {
         $configuration->setReceiverId(RECEIVER_ID);
         $configuration->setDebug(true);
         // $configuration->getSecret();
+        $valoresToken="";
 
         //file_put_contents("php://stderr", (string)$notification_token.PHP_EOL);
 
@@ -36,17 +37,20 @@ try {
         $response = $payments->paymentsGet($notification_token);
         
         // Imprime todos los valores del token:
-        file_put_contents("php://stderr", "Fuera del FOREACH: " . (string)$response.PHP_EOL);
+        //file_put_contents("php://stderr", "Fuera del FOREACH: " . (string)$response.PHP_EOL);
+        
         foreach ($response as $key => $value) {
             file_put_contents("php://stderr", (string)$key.PHP_EOL);
+            $valoresToken = $valoresToken . (string)$key.PHP_EOL . " --- ";
             file_put_contents("php://stderr", (string)$value.PHP_EOL);
+            $valoresToken = $valoresToken . (string)$value.PHP_EOL . " /// ";
         }
 
         if ($response->getReceiverId() == RECEIVER_ID) {
             if ($response->getStatus() == 'done'
              && $response->getAmount() == $amount
             ) {
-                // file_put_contents("php://stderr", "paso message !!!".PHP_EOL);
+                 file_put_contents("php://stderr", "PASO EL DONE <br>".$valoresToken .PHP_EOL);
                 // $headers = 'From: "Comercio de prueba" <no-responder@khipu.com>' . "\r\n";
                 // $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
                 // $subject = 'La compra de prueba funciona';
