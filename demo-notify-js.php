@@ -65,7 +65,7 @@ try {
                     'asd','asd','asd',123,'asd','";
                 $query2="')";
                 
-                $sql= $query1 . (string)$_GET['id'] . $query2;
+                $sql= $query1 . strval($paymentId) . $query2;
 
                 if ($conn->query($sql) === TRUE) {
                     echo "Registro insertado";
