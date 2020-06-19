@@ -8,28 +8,21 @@ $notification_token = $_POST['notification_token']; //Parámetro notification_to
 
 $amount = 5000;
 
-foreach ($_POST as $key => $value) {
-    echo "Field ".htmlspecialchars($key)." is ".htmlspecialchars($value)."<br>";
-}
-
-foreach ($_REQUEST as $key => $value) {
-    echo "Field ".htmlspecialchars($key)." is ".htmlspecialchars($value)."<br>";
-}
-
 try {
-    if ($api_version == 'api_version') {
+    if ($api_version == '1.3') {
         $configuration = new Khipu\Configuration();
         $configuration->setSecret(SECRET);
         $configuration->setReceiverId(RECEIVER_ID);
-        //$configuration->setDebug(true);
+        $configuration->setDebug(true);
 
-        
         $client = new Khipu\ApiClient($configuration);
         $payments = new Khipu\Client\PaymentsApi($client);
 
         $response = $payments->paymentsGet($notification_token);
         if ($response->getReceiverId() == RECEIVER_ID) {
-            if ($response->getStatus() == 'done' && $response->getAmount() == $amount) {
+            if ($response->getStatus() == 'done'
+            //  && $response->getAmount() == $amount
+            ) {
                 $headers = 'From: "Comercio de prueba" <no-responder@khipu.com>' . "\r\n";
                 $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
                 $subject = 'La compra de prueba funciona';
