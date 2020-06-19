@@ -41,31 +41,15 @@ try {
         
         foreach ($response as $key => $value) {
             file_put_contents("php://stderr", (string)$key.PHP_EOL);
-            $valoresToken = $valoresToken . (string)$key.PHP_EOL . " --- ";
             file_put_contents("php://stderr", (string)$value.PHP_EOL);
-            $valoresToken = $valoresToken . (string)$value.PHP_EOL . " /// ";
         }
 
         if ($response->getReceiverId() == RECEIVER_ID) {
             if ($response->getStatus() == 'done'
              && $response->getAmount() == $amount
             ) {
-                 file_put_contents("php://stderr", "PASO EL DONE <br>".$valoresToken .PHP_EOL);
-                // $headers = 'From: "Comercio de prueba" <no-responder@khipu.com>' . "\r\n";
-                // $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-                // $subject = 'La compra de prueba funciona';
-                // $body = <<<EOF
-                // Hola<br/>
-                // <br/>
-                // <p>
-                // Recibes este correo pues el pago de prueba fue conciliado por khipu
-                // </p>
+                 file_put_contents("php://stderr", "PASO EL DONE <br>". (string)$notification_token .PHP_EOL);
 
-                // EOF;
-
-                //file_put_contents("php://stderr", "paso email params!!!".PHP_EOL);
-                //mail($response->getPayerEmail(), $subject, $body, $headers);
-                //file_put_contents("php://stderr", "paso email sended!!!".PHP_EOL);
             }
         } else {
             // receiver_id no coincide
