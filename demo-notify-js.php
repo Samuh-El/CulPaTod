@@ -3,12 +3,17 @@
 require __DIR__ . '/vendor/autoload.php';
 include('constants.php');
 
-$api_version = $_REQUEST['api_version'];  // Parámetro api_version
-$notification_token = $_REQUEST['notification_token']; //Parámetro notification_token
+$api_version = $_POST['api_version'];  // Parámetro api_version
+$notification_token = $_POST['notification_token']; //Parámetro notification_token
+
 $amount = 5000;
 
-foreach ($_REQUEST as $key => $value){
-    echo "{$key} = {$value}\r\n";
+foreach ($_POST as $key => $value) {
+    echo "Field ".htmlspecialchars($key)." is ".htmlspecialchars($value)."<br>";
+}
+
+foreach ($_REQUEST as $key => $value) {
+    echo "Field ".htmlspecialchars($key)." is ".htmlspecialchars($value)."<br>";
 }
 
 try {

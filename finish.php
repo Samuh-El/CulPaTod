@@ -42,12 +42,18 @@ include('constants.php');
 $api_version = $_REQUEST['api_version'];  // Parámetro api_version
 $notification_token = $_REQUEST['notification_token']; //Parámetro notification_token
 $amount = 5000;
+echo "variables";
 
-foreach ($_REQUEST as $key => $value){
-    echo "{$key} = {$value}\r\n";
+foreach ($_POST as $key => $value) {
+    echo "Field ".htmlspecialchars($key)." is ".htmlspecialchars($value)."<br>";
+}
+
+foreach ($_REQUEST as $key => $value) {
+    echo "Field ".htmlspecialchars($key)." is ".htmlspecialchars($value)."<br>";
 }
 
 try {
+	echo "paso a try";
     if ($api_version == 'api_version') {
         $configuration = new Khipu\Configuration();
         $configuration->setSecret(SECRET);
