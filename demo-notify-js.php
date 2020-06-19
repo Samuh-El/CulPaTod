@@ -27,7 +27,6 @@ try {
         $configuration->setReceiverId(RECEIVER_ID);
         $configuration->setDebug(true);
         // $configuration->getSecret();
-        $valoresToken="";
 
         //file_put_contents("php://stderr", (string)$notification_token.PHP_EOL);
 
@@ -48,7 +47,7 @@ try {
             if ($response->getStatus() == 'done'
              && $response->getAmount() == $amount
             ) {
-                 file_put_contents("php://stderr", "PASO EL DONE <br>". (string)$notification_token .PHP_EOL);
+                file_put_contents("php://stderr", "PASO EL DONE ".PHP_EOL);
 
             }
         } else {
