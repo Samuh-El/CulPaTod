@@ -35,7 +35,7 @@ try {
         
         // Imprime todos los valores del token:
         file_put_contents("php://stderr", (string)$response.PHP_EOL);
-        $prueba = (string)$response;
+        $infoPago = (string)$response;
         
         $listadoValores="";
         foreach ($response as $key => $value) {
@@ -65,8 +65,8 @@ try {
                 die("Falló conexión: " . $conn->connect_error);
                 }
 
-                $sql = "INSERT INTO usuario (NombreUsuario,ClaveUsuario,direccion,celular,correo,idpago) 
-                VALUES ('asd','asd','asd',123,'asd','".$prueba."')";
+                $sql = "INSERT INTO usuario (NombreUsuario,ClaveUsuario,direccion,celular,correo,infoPago) 
+                VALUES ('asd','asd','asd',123,'asd','". $infoPago ."')";
                 
 
                 if ($conn->query($sql) === TRUE) {
