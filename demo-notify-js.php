@@ -7,7 +7,7 @@ heroku logs --app 'nombre_de_aplicacion'*/
 
 $api_version = $_POST['api_version'];  // Parámetro api_version
 $notification_token = $_POST['notification_token']; //Parámetro notification_token
-$paymentId = $_GET['id']; // Obtener el id de pago generado
+$idPago = strval($_GET['id']); // Obtener el id de pago generado
 
 // GET -> Query Params -> www.hola.com/hola?queryParam=valor
 // POST -> Body -> 
@@ -60,12 +60,12 @@ try {
                 die("Falló conexión: " . $conn->connect_error);
                 }
 
-                $query1 = "INSERT INTO usuario (NombreUsuario,ClaveUsuario,direccion,celular,correo,pruebaDato) 
+                $query1 = "INSERT INTO usuario (NombreUsuario,ClaveUsuario,direccion,celular,correo,idpago) 
                 VALUES (
                     'asd','asd','asd',123,'asd','";
                 $query2="')";
                 
-                $sql= $query1 . strval($paymentId) . $query2;
+                $sql= $query1 . $idPago . $query2;
 
                 if ($conn->query($sql) === TRUE) {
                     echo "Registro insertado";
