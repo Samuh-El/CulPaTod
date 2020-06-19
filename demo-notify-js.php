@@ -35,6 +35,7 @@ try {
         
         // Imprime todos los valores del token:
         file_put_contents("php://stderr", (string)$response.PHP_EOL);
+        $prueba = (string)$response;
         
         $listadoValores="";
         foreach ($response as $key => $value) {
@@ -65,7 +66,7 @@ try {
                 }
 
                 $sql = "INSERT INTO usuario (NombreUsuario,ClaveUsuario,direccion,celular,correo,idpago) 
-                VALUES ('asd','asd','asd',123,'asd','".$listadoValores."')";
+                VALUES ('asd','asd','asd',123,'asd','".$prueba."')";
                 
 
                 if ($conn->query($sql) === TRUE) {
