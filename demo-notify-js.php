@@ -7,7 +7,7 @@ heroku logs --app 'nombre_de_aplicacion'*/
 
 $api_version = $_POST['api_version'];  // Parámetro api_version
 $notification_token = $_POST['notification_token']; //Parámetro notification_token
-$idPago = strval($_GET['id']); // Obtener el id de pago generado
+$idPago = $_GET['id']; // Obtener el id de pago generado
 
 // GET -> Query Params -> www.hola.com/hola?queryParam=valor
 // POST -> Body -> 
@@ -69,6 +69,7 @@ try {
 
                 if ($conn->query($sql) === TRUE) {
                     echo "Registro insertado";
+                    file_put_contents("php://stderr", "La query fue: ".$sql.PHP_EOL);
                     file_put_contents("php://stderr", "Registro agregado".PHP_EOL);
                 } 
                 else {
