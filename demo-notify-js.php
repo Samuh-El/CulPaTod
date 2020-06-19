@@ -60,9 +60,12 @@ try {
                 die("Falló conexión: " . $conn->connect_error);
                 }
 
-                $sql = `INSERT INTO usuario (NombreUsuario,ClaveUsuario,direccion,celular,correo,pruebaDato) 
+                $query1 = "INSERT INTO usuario (NombreUsuario,ClaveUsuario,direccion,celular,correo,pruebaDato) 
                 VALUES (
-                    'asd','asd','asd',123,'asd','` . (string)$paymentId .`')`;
+                    'asd','asd','asd',123,'asd','";
+                $query2="')";
+                
+                $sql= $query1 . $paymentId . $query2;
 
                 if ($conn->query($sql) === TRUE) {
                     echo "Registro insertado";
