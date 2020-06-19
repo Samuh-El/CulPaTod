@@ -34,49 +34,61 @@
 
 <body>
 
-<div class="site-wrapper">
-
 <?php
+////////////////////////////
+require __DIR__ . '/vendor/autoload.php';
+include('constants.php');
 
-	require __DIR__ . '/vendor/autoload.php';
-	include('constants.php');
+$api_version = $_REQUEST['api_version'];  // Parámetro api_version
+$notification_token = $_REQUEST['notification_token']; //Parámetro notification_token
+$amount = 5000;
 
-	$api_version = '2.0';  // Parámetro api_version
-	$notification_token = $_GET['notification_token']; //Parámetro notification_token
-	$amount = 5000;
+foreach ($_REQUEST as $key => $value){
+    echo "{$key} = {$value}\r\n";
+}
 
-	try {
-		echo "<br>entró al try";
-		if ($api_version == '2.0') {
-			echo "<br>entró al if api_version";
-			$configuration = new Khipu\Configuration();
-			$configuration->setSecret(SECRET);
-			$configuration->setReceiverId(RECEIVER_ID);
-			$configuration->setDebug(true);
+try {
+    if ($api_version == 'api_version') {
+        $configuration = new Khipu\Configuration();
+        $configuration->setSecret(SECRET);
+        $configuration->setReceiverId(RECEIVER_ID);
+        //$configuration->setDebug(true);
 
-			$client = new Khipu\ApiClient($configuration);
-			$payments = new Khipu\Client\PaymentsApi($client);
+        $client = new Khipu\ApiClient($configuration);
+        $payments = new Khipu\Client\PaymentsApi($client);
 
-			echo "<br>antes del response";
-			$response = $payments->paymentsGet($notification_token);
-			echo "<br>paso el response";
+        $response = $payments->paymentsGet($notification_token);
+        if ($response->getReceiverId() == RECEIVER_ID) {
+            if ($response->getStatus() == 'done' && $response->getAmount() == $amount) {
+                $headers = 'From: "Comercio de prueba" <no-responder@khipu.com>' . "\r\n";
+                $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+                $subject = 'La compra de prueba funciona';
+                $body = <<<EOF
+Hola<br/>
+<br/>
+<p>
+Recibes este correo pues el pago de prueba fue conciliado por khipu
+</p>
 
-			if ($response->getReceiverId() == RECEIVER_ID) {
-				if ($response->getStatus() == 'done' && $response->getAmount() == $amount) {
-					echo "<br>PASO LA VOLA POR FIN!";
-				}
-			} else {
-				// receiver_id no coincide
-				echo "<br>receiver_id no coincide";
-			}
-		} else {
-			// Usar versión anterior de la API de notificación
-			echo "<br>Usar versión anterior de la API de notificación";
-		}
-	} catch (\Khipu\ApiException $exception) {
-		print_r($exception->getResponseObject());
-	}
+EOF;
+                mail($response->getPayerEmail(), $subject, $body, $headers);
+            }
+        } else {
+            // receiver_id no coincide
+        }
+    } else {
+        // Usar versión anterior de la API de notificación
+    }
+} catch (\Khipu\ApiException $exception) {
+    print_r($exception->getResponseObject());
+}
+
+
+
+////////////////////////////
 ?>
+
+<div class="site-wrapper">
 
 	<div class="site-wrapper-inner">
 
