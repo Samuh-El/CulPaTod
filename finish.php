@@ -52,7 +52,7 @@ try {
         $configuration = new Khipu\Configuration();
         $configuration->setSecret(SECRET);
         $configuration->setReceiverId(RECEIVER_ID);
-        //$configuration->setDebug(true);
+        $configuration->setDebug(true);
 
         $client = new Khipu\ApiClient($configuration);
         $payments = new Khipu\Client\PaymentsApi($client);
