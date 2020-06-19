@@ -36,7 +36,7 @@ try {
         // Imprime todos los valores del token:
         file_put_contents("php://stderr", (string)$response.PHP_EOL);
         
-        $listadoValores;
+        $listadoValores="";
         foreach ($response as $key => $value) {
             file_put_contents("php://stderr", (string)$key.PHP_EOL);
             $listadoValores = $listadoValores . $key;
