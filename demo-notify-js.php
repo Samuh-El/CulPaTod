@@ -1,5 +1,4 @@
 <?php
-
 require __DIR__ . '/vendor/autoload.php';
 include('constants.php');
 
@@ -36,6 +35,7 @@ try {
         
         // Imprime todos los valores del token:
         file_put_contents("php://stderr", (string)$response.PHP_EOL);
+        
         foreach ($response as $key => $value) {
             file_put_contents("php://stderr", (string)$key.PHP_EOL);
             file_put_contents("php://stderr", (string)$value.PHP_EOL);
@@ -45,24 +45,40 @@ try {
             if ($response->getStatus() == 'done'
              && $response->getAmount() == $amount
             ) {
+                //SI PASA QUIERE DECIR QUE SE HIZO TODO CORRECTO
                 // file_put_contents("php://stderr", "paso message !!!".PHP_EOL);
-                // $headers = 'From: "Comercio de prueba" <no-responder@khipu.com>' . "\r\n";
-                // $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-                // $subject = 'La compra de prueba funciona';
-                // $body = <<<EOF
-                // Hola<br/>
-                // <br/>
-                // <p>
-                // Recibes este correo pues el pago de prueba fue conciliado por khipu
-                // </p>
+                // Insertar en BD:
+                $servername = "190.107.177.34";
+                $username = "producto_Samuel";
+                $password = "S@muel01";
+                $dbname = "producto_chile";
 
-                // EOF;
+                // Create connection
+                $conn = new mysqli($servername, $username, $password, $dbname);
+                // Check connection
+                if ($conn->connect_error) {
+                die("Falló conexión: " . $conn->connect_error);
+                }
 
-                //file_put_contents("php://stderr", "paso email params!!!".PHP_EOL);
-                //mail($response->getPayerEmail(), $subject, $body, $headers);
-                //file_put_contents("php://stderr", "paso email sended!!!".PHP_EOL);
+                $sql = "INSERT INTO usuario (NombreUsuario,ClaveUsuario,direccion,celular,correo) 
+                VALUES (
+                    'asd','asd','asd',123,'asd'
+                )";
+
+                if ($conn->query($sql) === TRUE) {
+                    echo "Registro insertado";
+                    file_put_contents("php://stderr", "Registro agregado".PHP_EOL);
+                } 
+                else {
+                    echo "Error: " . $sql . "<br>" . $conn->error;
+                }
+
+                $conn->close();
+                
             }
-        } else {
+        } 
+        
+        else {
             // receiver_id no coincide
         }
     } else {
