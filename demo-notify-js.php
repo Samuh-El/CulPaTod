@@ -7,7 +7,7 @@ heroku logs --app 'nombre_de_aplicacion'*/
 
 $api_version = $_POST['api_version'];  // Parámetro api_version
 $notification_token = $_POST['notification_token']; //Parámetro notification_token
-$idPago = $_GET['id']; // Obtener el id de pago generado
+//$idPago = $_GET['id']; // Obtener el id de pago generado
 
 // GET -> Query Params -> www.hola.com/hola?queryParam=valor
 // POST -> Body -> 
@@ -53,6 +53,7 @@ try {
                 $username = "producto_Samuel";
                 $password = "S@muel01";
                 $dbname = "producto_chile";
+                $idPago = $_GET['id'];
 
                 // Create connection
                 $conn = new mysqli($servername, $username, $password, $dbname);
