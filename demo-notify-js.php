@@ -61,9 +61,7 @@ try {
                 die("Falló conexión: " . $conn->connect_error);
                 }
 
-                $query1 = "INSERT INTO usuario (NombreUsuario,ClaveUsuario,direccion,celular,correo,idpago) 
-                VALUES (
-                    'asd','asd','asd',123,'asd','";
+                $query1 = "INSERT INTO usuario (NombreUsuario,ClaveUsuario,direccion,celular,correo,idpago) VALUES ('asd','asd','asd',123,'asd','";
                 $query2="')";
                 
                 $sql= $query1 . $idPago . $query2;
