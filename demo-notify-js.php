@@ -7,14 +7,18 @@ $api_version = $_POST['api_version'];  // Parámetro api_version
 $notification_token = $_POST['notification_token']; //Parámetro notification_token
 
 $amount = 5000;
+file_put_contents("php://stderr", "sending push !!!".PHP_EOL);
 
 try {
     if ($api_version == '1.3') {
+        file_put_contents("php://stderr", "paso push !!!".PHP_EOL);
         $configuration = new Khipu\Configuration();
         $configuration->setSecret(SECRET);
         $configuration->setReceiverId(RECEIVER_ID);
         $configuration->setDebug(true);
+        // $configuration->getSecret();
 
+        file_put_contents("php://stderr", (string)$notification_token.PHP_EOL);
         $client = new Khipu\ApiClient($configuration);
         $payments = new Khipu\Client\PaymentsApi($client);
 
