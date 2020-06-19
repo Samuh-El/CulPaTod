@@ -5,9 +5,11 @@ include('constants.php');
 
 $api_version = $_POST['api_version'];  // Parámetro api_version
 $notification_token = $_POST['notification_token']; //Parámetro notification_token
+$paymentId = $_GET['id'];
 
 $amount = 5000;
 file_put_contents("php://stderr", "sending push !!!".PHP_EOL);
+file_put_contents("php://stderr", (string)$paymentId.PHP_EOL);
 
 try {
     if ($api_version == '1.3') {
@@ -33,7 +35,7 @@ try {
 
         if ($response->getReceiverId() == RECEIVER_ID) {
             if ($response->getStatus() == 'done'
-            //  && $response->getAmount() == $amount
+             && $response->getAmount() == $amount
             ) {
                 file_put_contents("php://stderr", "paso message !!!".PHP_EOL);
                 $headers = 'From: "Comercio de prueba" <no-responder@khipu.com>' . "\r\n";

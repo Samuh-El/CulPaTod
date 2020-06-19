@@ -15,7 +15,6 @@ $configuration->setDebug(true);
 $client = new Khipu\ApiClient($configuration);
 $payments = new Khipu\Client\PaymentsApi($client);
 
-
 try {
     $opts = array(
         "body" => "Pago del ticket de evento",
