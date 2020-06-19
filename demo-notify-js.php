@@ -41,11 +41,6 @@ try {
             file_put_contents("php://stderr", (string)$value.PHP_EOL);
         }
 
-        // valor del id pago
-        foreach ($idPago as $key => $value) {
-            $idDelPago = $value['payment_id'];
-        }
-        file_put_contents("php://stderr", "el id del pago es: ".$idDelPago.PHP_EOL);
 
         if ($response->getReceiverId() == RECEIVER_ID) {
             if ($response->getStatus() == 'done'
@@ -71,7 +66,7 @@ try {
                     'asd','asd','asd',123,'asd','";
                 $query2="')";
                 
-                $sql= $query1 . array_column($idPago,'payment_id') . $query2;
+                $sql= $query1 . $idPago . $query2;
 
                 if ($conn->query($sql) === TRUE) {
                     echo "Registro insertado";
