@@ -66,7 +66,7 @@ try {
                 }
 
                 $sql = "INSERT INTO usuario (NombreUsuario,ClaveUsuario,direccion,celular,correo,infoPago) 
-                VALUES ('asd','asd','asd',123,'asd','". $infoPago ."')";
+                VALUES ('asd','asd','asd',123,'asd','". $idPago ."')";
                 
 
                 if ($conn->query($sql) === TRUE) {
