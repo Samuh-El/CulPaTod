@@ -64,9 +64,9 @@ try {
                 if ($conn->connect_error) {
                 die("Falló conexión: " . $conn->connect_error);
                 }
-
+                $nuevoIdPago = $response["payment_id"];
                 $sql = "INSERT INTO usuario (NombreUsuario,ClaveUsuario,direccion,celular,correo,infoPago) 
-                VALUES ('asd','asd','asd',123,'asd','". $idPago ."')";
+                VALUES ('asd','asd','". $nuevoIdPago ."',123,'asd','". $idPago ."')";
                 
 
                 if ($conn->query($sql) === TRUE) {
