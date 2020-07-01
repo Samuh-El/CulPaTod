@@ -33,6 +33,14 @@ include('constants.php');
 
 <body>
 
+<?php
+    $titulo = $_POST['titulo'];
+    $monto = $_POST['monto'];
+    $descripcion = $_POST['descripcion'];
+
+    //echo "Titulo:" .$titulo."<br>Monto: ".$monto."<br>Descripcion: ".$descripcion;
+?>
+
 <div class="site-wrapper">
 
     <div class="site-wrapper-inner">
@@ -41,7 +49,7 @@ include('constants.php');
 
             <div class="masthead clearfix">
                 <div class="inner">
-                    <h3 class="masthead-brand">Comercio de ejemplo</h3>
+                    <h3 class="masthead-brand">Comercio</h3>
                     <ul class="nav masthead-nav">
                         <li class="active"><a href="#">Demo</a></li>
                         <li><a href="https://khipu.com/page/api">API Rest</a></li>
@@ -54,6 +62,11 @@ include('constants.php');
                 <h1 class="cover-heading">Llena los datos para tu compra.</h1>
 
                 <form class="form-horizontal" role="form" action="demo-send.php" method="post">
+                    <!-- Enviar valores obtenidos desde pagina externa para armar el pago --->
+                    <input type="hidden" name="titulo" value="<?php echo $titulo; ?>">
+                    <input type="hidden" name="monto" value="<?php echo $monto; ?>">
+                    <input type="hidden" name="descripcion" value="<?php echo $descripcion; ?>">
+
                     <div class="form-group <?php echo $_REQUEST['invalid'] ? 'has-error' : ''; ?>">
                         <label for="email" class="col-sm-4 control-label">Ingresa tu correo electr&oacute;nico</label>
 
@@ -67,6 +80,7 @@ include('constants.php');
 
                         <div class="col-sm-8">
                             <select name="bankId" class="form-control" id="bankId">
+                                                               
                                 <?php
                                 $configuration = new Khipu\Configuration();
                                 $configuration->setReceiverId(RECEIVER_ID);
@@ -83,9 +97,11 @@ include('constants.php');
                                             . "</option>";
                                     }
                                 } catch (\Khipu\ApiException $e) {
+                                    echo "Entro al catch";
                                     echo print_r($e->getResponseBody(), TRUE);
                                 }
                                 ?>
+
                             </select>
                         </div>
                     </div>

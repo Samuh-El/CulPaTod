@@ -56,7 +56,7 @@
 
 				<h1 class="cover-heading">Comprueba tu orden y realiza el pago.</h1>
 
-				<p>Estas comprando "Un producto de prueba". Para hacer el pago presiona el botón más abajo y sigue las
+				<p>Para hacer el pago presiona el botón más abajo y sigue las
 					instrucciones.</p>
 
 				<div class="col-sm-offset-4 start-khipu">
