@@ -38,7 +38,7 @@ include('constants.php');
     $monto = $_POST['monto'];
     $descripcion = $_POST['descripcion'];
 
-    //echo "Titulo:" .$titulo."<br>Monto: ".$monto."<br>Descripcion: ".$descripcion;
+    echo "Titulo:" .$titulo."<br>Monto: ".$monto."<br>Descripcion: ".$descripcion;
 ?>
 
 <div class="site-wrapper">
