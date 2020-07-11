@@ -1,7 +1,7 @@
 <?php
 require __DIR__ . '/vendor/autoload.php';
+require __DIR__ . '/vendor/index.php';
 include('constants.php');
-include('index.php');
 
 /* Ver en consola log de heroku
 heroku logs --app 'nombre_de_aplicacion'*/
