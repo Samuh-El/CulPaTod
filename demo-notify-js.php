@@ -5,25 +5,20 @@ include('constants.php');
 /* Ver en consola log de heroku
 heroku logs --app 'nombre_de_aplicacion'*/
 
-echo "entro al dememo-notify";
+file_put_contents("php://stderr", "entro al demo notify !!!".PHP_EOL);
 
 $api_version = $_POST['api_version'];  // Parámetro api_version
 $notification_token = $_POST['notification_token']; //Parámetro notification_token
 //$idPago = $_GET['id']; // Obtener el id de pago generado
-
-// GET -> Query Params -> www.hola.com/hola?queryParam=valor
-// POST -> Body -> 
-// REQUEST -> ???
-
 $amount = 5000;
 // file_put_contents("php://stderr", "sending push !!!".PHP_EOL);
 // file_put_contents("php://stderr", (string)$paymentId.PHP_EOL);
 
 try {
-    echo "entro al try";
+  
     if ($api_version == '1.3') {
         echo "entro al if";
-        //file_put_contents("php://stderr", "paso push !!!".PHP_EOL);
+        file_put_contents("php://stderr", "entro al if !!!".PHP_EOL);
         $configuration = new Khipu\Configuration();
         $configuration->setSecret(SECRET);
         $configuration->setReceiverId(RECEIVER_ID);
@@ -52,7 +47,7 @@ try {
              && $response->getAmount() == $amount
             ) {
                 //SI PASA QUIERE DECIR QUE SE HIZO TODO CORRECTO
-                // file_put_contents("php://stderr", "paso message !!!".PHP_EOL);
+                file_put_contents("php://stderr", "paso message !!!".PHP_EOL);
                 // Insertar en BD:
                 $servername = "190.107.177.34";
                 $username = "producto_Samuel";
@@ -71,14 +66,16 @@ try {
                 $sql = "INSERT INTO usuario (NombreUsuario,ClaveUsuario,direccion,celular,correo,infoPago) 
                 VALUES ('asd','asd','". $nuevoIdPago ."',123,'asd','". $idPago ."')";
                 echo $sql;
+
+                file_put_contents("php://stderr", $sql.PHP_EOL);
                 
                 if ($conn->query($sql) === TRUE) {
-                    echo "Registro insertado";
+
                     file_put_contents("php://stderr", "La query fue: ".$sql.PHP_EOL);
                     file_put_contents("php://stderr", "Registro agregado".PHP_EOL);
                 } 
                 else {
-                    echo "ERROR ENTRO AL ELSE!";
+                    file_put_contents("php://stderr", "ERROR ENTRO AL ELSE".PHP_EOL);
                     echo "Error: " . $sql . "<br>" . $conn->error;
                 }
 
