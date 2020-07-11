@@ -62,6 +62,10 @@ include('constants.php');
                 <h1 class="cover-heading">Llena los datos para tu compra.</h1>
 
                 <form class="form-horizontal" role="form" action="demo-send.php" method="post">
+                    <input type="hidden" name="idEspectaculo" value="<?php echo $idEspectaculo; ?>">
+                </form>
+
+                <form class="form-horizontal" role="form" action="demo-send.php" method="post">
                     <!-- Enviar valores obtenidos desde pagina externa para armar el pago --->
                     <input type="hidden" name="titulo" value="<?php echo $titulo; ?>">
                     <input type="hidden" name="monto" value="<?php echo $monto; ?>">
