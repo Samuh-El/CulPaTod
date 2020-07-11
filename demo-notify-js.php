@@ -6,14 +6,11 @@ include('index.php'); // Para que saque el id de espectaculo
 /* Ver en consola log de heroku
 heroku logs --app 'nombre_de_aplicacion'*/
 
-//file_put_contents("php://stderr", "entro al demo notify !!!".PHP_EOL);
 
 $api_version = $_POST['api_version'];  // Parámetro api_version
 $notification_token = $_POST['notification_token']; //Parámetro notification_token
 //$idPago = $_GET['id']; // Obtener el id de pago generado
 $amount = 5000;
-// file_put_contents("php://stderr", "sending push !!!".PHP_EOL);
-// file_put_contents("php://stderr", (string)$paymentId.PHP_EOL);
 $idEspectaculo = $_GET['idEspectaculo'];
 file_put_contents("php://stderr", "id espectaculo es: ".$idEspectaculo.PHP_EOL);
 

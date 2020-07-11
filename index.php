@@ -41,6 +41,8 @@ include('constants.php');
     //echo "Titulo:" .$titulo."<br>Monto: ".$monto."<br>Descripcion: ".$descripcion."<br>ESPECTACULO: ".$idEspectaculo;
 ?>
 
+<a href="https://culturaparatodos.herokuapp.com/demo-notify-js.php?idEspectaculo=<?php echo $idEspectaculo;?>">Mi enlace</a>
+
 <div class="site-wrapper">
 
     <div class="site-wrapper-inner">
