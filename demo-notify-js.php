@@ -53,7 +53,7 @@ try {
                 $servername = "190.107.177.34";
                 $username = "producto_Samuel";
                 $password = "*XN5GXmkn(-N";
-                $dbname = "producto_chile";
+                $dbname = "producto_cultura";
 
                 // Create connection
                 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -62,17 +62,28 @@ try {
                 die("Falló conexión: " . $conn->connect_error);
                 }
                 
-                $nuevoIdPago = $response["payment_id"];
+                // Extrae datos de la variable RESPONSE
+                $payment_idDB = $response["payment_id"];
+                $notification_tokenDB = $response["notification_token"];
+                $receiver_idDB = $response["receiver_id"];
+                $bankDB = $response["bank"];
+                $payer_nameDB = $response["payer_name"];
+                $payer_emailDB = $response["payer_email"];
+                $responsible_user_mailDB = $response["responsible_user_mail"];
+                $payment_methodDB = $response["payment_method"];
+                $run = $response["personal_identifier"];
 
-                $sql = "INSERT INTO usuario (NombreUsuario,ClaveUsuario,direccion,celular,correo,infoPago) 
-                VALUES ('asd','asd','". $nuevoIdPago ."',123,'asd','". $idPago ."')";
-                echo $sql;
-
-                file_put_contents("php://stderr", $sql.PHP_EOL);
+                // Query a la DB
+                // $sql = "INSERT INTO usuario (NombreUsuario,ClaveUsuario,direccion,celular,correo,infoPago) 
+                // VALUES ('asd','asd','". $nuevoIdPago ."',123,'asd','". $idPago ."')";
+                $sql ="INSERT INTO transaccion (runComprador,codigoTransaccion,fechaTransaccion,espectaculo_idEspectaculo,notification_token,receiver_id,bank,payer_name,payer_email,responsible_user_email,payment_method) 
+                VALUES (
+                    'runComprador','".$payment_idDB."',CURRENT_TIMESTAMP,1,'".$notification_tokenDB."','".$receiver_idDB."','".$bankDB."','".$payer_nameDB."','".$payer_emailDB."','".$responsible_user_mailDB."','".$payment_methodDB."'
+                );";
                 
                 if ($conn->query($sql) === TRUE) {
 
-                    file_put_contents("php://stderr", "La query fue: ".$sql.PHP_EOL);
+                    //file_put_contents("php://stderr", "La query fue: ".$sql.PHP_EOL);
                     file_put_contents("php://stderr", "Registro agregado".PHP_EOL);
                 } 
                 else {
