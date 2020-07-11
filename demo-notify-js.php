@@ -78,7 +78,7 @@ try {
                 // VALUES ('asd','asd','". $nuevoIdPago ."',123,'asd','". $idPago ."')";
                 $sql ="INSERT INTO transaccion (runComprador,codigoTransaccion,fechaTransaccion,espectaculo_idEspectaculo,notification_token,receiver_id,bank,payer_name,payer_email,responsible_user_email,payment_method) 
                 VALUES (
-                    'runComprador','".$payment_idDB."',CURRENT_TIMESTAMP,1,'".$notification_tokenDB."','".$receiver_idDB."','".$bankDB."','".$payer_nameDB."','".$payer_emailDB."','".$responsible_user_mailDB."','".$payment_methodDB."'
+                    '".$run."','".$payment_idDB."',CURRENT_TIMESTAMP,1,'".$notification_tokenDB."','".$receiver_idDB."','".$bankDB."','".$payer_nameDB."','".$payer_emailDB."','".$responsible_user_mailDB."','".$payment_methodDB."'
                 );";
                 
                 if ($conn->query($sql) === TRUE) {
