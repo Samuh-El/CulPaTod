@@ -6,6 +6,8 @@ include('constants.php');
 $titulo = $_POST['titulo'];
 $monto = $_POST['monto'];
 $descripcion = $_POST['descripcion'];
+$idEspectaculo = $_POST['idEspectaculo'];
+
 
 //echo "Titulo: ".$titulo."<br>Monto: ".$monto."<br>Descripcion: ".$descripcion;
 
@@ -44,3 +46,9 @@ try {
 catch (\Khipu\ApiException $e) {
     echo print_r($e->getResponseBody(), TRUE);
 }
+?>
+
+<form class="form-horizontal" role="form" action="demo-notify-js.php" method="post">
+    <!-- Enviar valores obtenidos desde pagina externa para armar el pago --->
+    <input type="hidden" name="idEspectaculo" value="<?php echo $idEspectaculo; ?>">
+</form>
