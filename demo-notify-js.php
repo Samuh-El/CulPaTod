@@ -43,11 +43,12 @@ try {
 
 
         if ($response->getReceiverId() == RECEIVER_ID) {
+            file_put_contents("php://stderr", "entro al if getReceiverID()".PHP_EOL);
             if ($response->getStatus() == 'done'
              && $response->getAmount() == $amount
             ) {
                 //SI PASA QUIERE DECIR QUE SE HIZO TODO CORRECTO
-                file_put_contents("php://stderr", "paso message !!!".PHP_EOL);
+                file_put_contents("php://stderr", "entro al if que inserta datos".PHP_EOL);
                 // Insertar en BD:
                 $servername = "190.107.177.34";
                 $username = "producto_Samuel";
