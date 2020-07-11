@@ -66,6 +66,7 @@ try {
 
                 $sql = "INSERT INTO usuario (NombreUsuario,ClaveUsuario,direccion,celular,correo,infoPago) 
                 VALUES ('asd','asd','". $nuevoIdPago ."',123,'asd','". $idPago ."')";
+                echo $sql;
                 
                 if ($conn->query($sql) === TRUE) {
                     echo "Registro insertado";
@@ -73,6 +74,7 @@ try {
                     file_put_contents("php://stderr", "Registro agregado".PHP_EOL);
                 } 
                 else {
+                    echo "ERROR ENTRO AL ELSE!";
                     echo "Error: " . $sql . "<br>" . $conn->error;
                 }
 
@@ -83,9 +85,11 @@ try {
         
         else {
             // receiver_id no coincide
+            echo "// receiver_id no coincide";
         }
     } else {
         // Usar versión anterior de la API de notificación
+        echo "// Usar versión anterior de la API de notificación";
     }
 } catch (\Khipu\ApiException $exception) {
     print_r($exception->getResponseObject());
