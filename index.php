@@ -66,7 +66,6 @@ include('constants.php');
                     <input type="hidden" name="titulo" value="<?php echo $titulo; ?>">
                     <input type="hidden" name="monto" value="<?php echo $monto; ?>">
                     <input type="hidden" name="descripcion" value="<?php echo $descripcion; ?>">
-                    <input type="hidden" name="idEspectaculo" value="<?php echo $idEspectaculo; ?>">
                     
 
                     <div class="form-group <?php echo $_REQUEST['invalid'] ? 'has-error' : ''; ?>">

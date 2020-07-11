@@ -14,7 +14,8 @@ $notification_token = $_POST['notification_token']; //Parámetro notification_to
 $amount = 5000;
 // file_put_contents("php://stderr", "sending push !!!".PHP_EOL);
 // file_put_contents("php://stderr", (string)$paymentId.PHP_EOL);
-
+$idEspectaculo = $_POST['idEspectaculo'];
+file_put_contents("php://stderr", "id espectaculo es: ".$idEspectaculo.PHP_EOL);
 
 try {
   
