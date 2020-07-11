@@ -6,9 +6,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="">
 	<meta name="author" content="">
-	<link rel="shortcut icon" href="images/icon.png">
+	<link rel="shortcut icon" href="images/favicon.ico">
 
-	<title>Pago Khipu</title>
+	<title>Comprueba tu orden y realiza el pago.</title>
 
 	<!-- Bootstrap core CSS -->
 	<link href="css/bootstrap.min.css" rel="stylesheet">
@@ -42,25 +42,33 @@
 
 			<div class="masthead clearfix">
 				<div class="inner">
-					
+					<h3 class="masthead-brand">Comercio de ejemplo</h3>
+					<ul class="nav masthead-nav">
+						<li class="active"><a href="#">Home</a></li>
+						<li><a href="#">Features</a></li>
+						<li><a href="#">Contact</a></li>
+					</ul>
 				</div>
 			</div>
 
 			<div class="inner cover">
 
 
-				<h1 class="cover-heading" style="font-family: 'Montserrat', sans-serif;">Khipu</h1>
+				<h1 class="cover-heading">Comprueba tu orden y realiza el pago.</h1>
 
-				<p style="font-family: 'Averia Serif Libre', cursive;">Presiona el botón para proceder al pago con Khipu.</p>
+				<p>Para hacer el pago presiona el botón más abajo y sigue las
+					instrucciones.</p>
 
-				<br><br><br>
 				<div class="col-sm-offset-4 start-khipu">
 					<img src="https://s3.amazonaws.com/static.khipu.com/buttons/2015/200x75-transparent.png" id="pay-button"/>
 				</div>
 			</div>
 
 			<div class="mastfoot">
-				
+				<div class="inner">
+					<p>Cover template for <a href="http://getbootstrap.com">Bootstrap</a>,
+						by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+				</div>
 			</div>
 
 		</div>

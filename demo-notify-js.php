@@ -52,8 +52,8 @@ try {
                 // Insertar en BD:
                 $servername = "190.107.177.34";
                 $username = "producto_Samuel";
-                $password = "S@muel01";
-                $dbname = "producto_cultura";
+                $password = "*XN5GXmkn(-N";
+                $dbname = "producto_chile";
 
                 // Create connection
                 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -64,14 +64,8 @@ try {
                 
                 $nuevoIdPago = $response["payment_id"];
 
-                $sql = "INSERT INTO transaccion (runComprador,codigoTransaccion,fechaTransaccion,
-                espectaculo_idEspectaculo,notification_token,receiver_id,bank,payer_name,payer_email,
-                responsible_user_email,payment_method) VALUES
-                (
-                    '18.987.021-3','asd123asd123asd123','23-01-2020',1,'asdasdasd','12','DemoBank','samuel','asda@jasda.con','asda@asjd.com','asdasd'
-                );";
-
-                echo $sql;
+                $sql = "INSERT INTO usuario (NombreUsuario,ClaveUsuario,direccion,celular,correo,infoPago) 
+                VALUES ('asd','asd','". $nuevoIdPago ."',123,'asd','". $idPago ."')";
                 
                 if ($conn->query($sql) === TRUE) {
                     echo "Registro insertado";
@@ -79,7 +73,6 @@ try {
                     file_put_contents("php://stderr", "Registro agregado".PHP_EOL);
                 } 
                 else {
-                    echo "entro al else";
                     echo "Error: " . $sql . "<br>" . $conn->error;
                 }
 
@@ -90,11 +83,9 @@ try {
         
         else {
             // receiver_id no coincide
-            echo "receiver_id no coincide";
         }
     } else {
         // Usar versión anterior de la API de notificación
-        echo "Usar versión anterior de la API de notificación";
     }
 } catch (\Khipu\ApiException $exception) {
     print_r($exception->getResponseObject());
