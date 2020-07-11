@@ -72,13 +72,14 @@ try {
                 $responsible_user_mailDB = $response["responsible_user_mail"];
                 $payment_methodDB = $response["payment_method"];
                 $run = $response["personal_identifier"];
+                $valorTransaccionDB = $response["amount"];
 
                 // Query a la DB
                 // $sql = "INSERT INTO usuario (NombreUsuario,ClaveUsuario,direccion,celular,correo,infoPago) 
                 // VALUES ('asd','asd','". $nuevoIdPago ."',123,'asd','". $idPago ."')";
-                $sql ="INSERT INTO transaccion (runComprador,codigoTransaccion,fechaTransaccion,espectaculo_idEspectaculo,notification_token,receiver_id,bank,payer_name,payer_email,responsible_user_email,payment_method) 
+                $sql ="INSERT INTO transaccion (runComprador,codigoTransaccion,fechaTransaccion,espectaculo_idEspectaculo,notification_token,receiver_id,bank,payer_name,payer_email,responsible_user_email,payment_method,valorTransaccion) 
                 VALUES (
-                    '".$run."','".$payment_idDB."',CURRENT_TIMESTAMP,1,'".$notification_tokenDB."','".$receiver_idDB."','".$bankDB."','".$payer_nameDB."','".$payer_emailDB."','".$responsible_user_mailDB."','".$payment_methodDB."'
+                    '".$run."','".$payment_idDB."',CURRENT_TIMESTAMP,1,'".$notification_tokenDB."','".$receiver_idDB."','".$bankDB."','".$payer_nameDB."','".$payer_emailDB."','".$responsible_user_mailDB."','".$payment_methodDB."','".$valorTransaccionDB."'
                 );";
                 
                 if ($conn->query($sql) === TRUE) {
