@@ -38,7 +38,7 @@ include('constants.php');
     $monto = $_POST['monto'];
     $descripcion = $_POST['descripcion'];
     $idEspectaculo = $_POST['idEspectaculo'];
-    echo "Titulo:" .$titulo."<br>Monto: ".$monto."<br>Descripcion: ".$descripcion."<br>ESPECTACULO: ".$idEspectaculo;
+    //echo "Titulo:" .$titulo."<br>Monto: ".$monto."<br>Descripcion: ".$descripcion."<br>ESPECTACULO: ".$idEspectaculo;
 ?>
 
 <div class="site-wrapper">
@@ -60,11 +60,6 @@ include('constants.php');
 
             <div class="inner cover">
                 <h1 class="cover-heading">Llena los datos para tu compra.</h1>
-
-                <form class="form-horizontal" role="form" action="demo-send.php" method="post">
-                    <!-- Enviar valores obtenidos desde pagina externa para armar el pago --->
-                    <input type="hidden" name="idEspectaculo" value="<?php echo $idEspectaculo; ?>">
-                </form>
 
                 <form class="form-horizontal" role="form" action="demo-send.php" method="post">
                     <!-- Enviar valores obtenidos desde pagina externa para armar el pago --->
