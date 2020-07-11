@@ -1,6 +1,7 @@
 <?php
 require __DIR__ . '/vendor/autoload.php';
 include('constants.php');
+include('index.php'); // Para que saque el id de espectaculo
 
 /* Ver en consola log de heroku
 heroku logs --app 'nombre_de_aplicacion'*/
