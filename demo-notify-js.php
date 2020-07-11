@@ -5,7 +5,7 @@ include('constants.php');
 /* Ver en consola log de heroku
 heroku logs --app 'nombre_de_aplicacion'*/
 
-file_put_contents("php://stderr", "entro al demo notify !!!".PHP_EOL);
+//file_put_contents("php://stderr", "entro al demo notify !!!".PHP_EOL);
 
 $api_version = $_POST['api_version'];  // Parámetro api_version
 $notification_token = $_POST['notification_token']; //Parámetro notification_token
@@ -18,7 +18,7 @@ try {
   
     if ($api_version == '1.3') {
         echo "entro al if";
-        file_put_contents("php://stderr", "entro al if !!!".PHP_EOL);
+        //file_put_contents("php://stderr", "entro al if !!!".PHP_EOL);
         $configuration = new Khipu\Configuration();
         $configuration->setSecret(SECRET);
         $configuration->setReceiverId(RECEIVER_ID);
@@ -45,7 +45,7 @@ try {
         if ($response->getReceiverId() == RECEIVER_ID) {
             file_put_contents("php://stderr", "entro al if getReceiverID()".PHP_EOL);
             if ($response->getStatus() == 'done'
-             && $response->getAmount() == $amount
+             //&& $response->getAmount() == $amount
             ) {
                 //SI PASA QUIERE DECIR QUE SE HIZO TODO CORRECTO
                 file_put_contents("php://stderr", "entro al if que inserta datos".PHP_EOL);
