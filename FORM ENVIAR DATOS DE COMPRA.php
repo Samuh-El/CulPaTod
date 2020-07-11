@@ -13,6 +13,7 @@
         Titulo de la vola xdxd: <input type="text" name="titulo"><br>
         Monto: <input type="text" name="monto"><br>
         Descripción: <input type="text" name="descripcion"><br>
+        ID Espectaculo: <input type="text" name="idEspectaculo"><br>
         <br>
         <input type="submit" value="OK">
     </form>

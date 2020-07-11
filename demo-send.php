@@ -6,6 +6,7 @@ include('constants.php');
 $titulo = $_POST['titulo'];
 $monto = $_POST['monto'];
 $descripcion = $_POST['descripcion'];
+$idEspectaculo = $_POST['idEspectaculo'];
 
 //echo "Titulo: ".$titulo."<br>Monto: ".$monto."<br>Descripcion: ".$descripcion;
 
