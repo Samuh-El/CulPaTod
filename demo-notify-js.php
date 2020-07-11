@@ -15,7 +15,7 @@ $amount = 5000;
 // file_put_contents("php://stderr", "sending push !!!".PHP_EOL);
 // file_put_contents("php://stderr", (string)$paymentId.PHP_EOL);
 
-$idEspectaculo = $_POST['descripcion'];
+$idEspectaculo = $_POST['idEspectaculo'];
 
 
 try {
