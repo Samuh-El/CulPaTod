@@ -5,6 +5,8 @@ include('constants.php');
 /* Ver en consola log de heroku
 heroku logs --app 'nombre_de_aplicacion'*/
 
+echo "entro al dememo-notify";
+
 $api_version = $_POST['api_version'];  // Parámetro api_version
 $notification_token = $_POST['notification_token']; //Parámetro notification_token
 //$idPago = $_GET['id']; // Obtener el id de pago generado
@@ -18,7 +20,9 @@ $amount = 5000;
 // file_put_contents("php://stderr", (string)$paymentId.PHP_EOL);
 
 try {
+    echo "entro al try";
     if ($api_version == '1.3') {
+        echo "entro al if";
         //file_put_contents("php://stderr", "paso push !!!".PHP_EOL);
         $configuration = new Khipu\Configuration();
         $configuration->setSecret(SECRET);
