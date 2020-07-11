@@ -10,9 +10,9 @@ include('constants.php');
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="shortcut icon" href="images/icon.png">
 
-    <title>Llena los datos para tu compra.</title>
+    <title style="font-family: 'Montserrat', sans-serif;">Pago Khipu</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -41,6 +41,8 @@ include('constants.php');
     //echo "Titulo:" .$titulo."<br>Monto: ".$monto."<br>Descripcion: ".$descripcion;
 ?>
 
+
+
 <div class="site-wrapper">
 
     <div class="site-wrapper-inner">
@@ -49,17 +51,12 @@ include('constants.php');
 
             <div class="masthead clearfix">
                 <div class="inner">
-                    <h3 class="masthead-brand">Comercio</h3>
-                    <ul class="nav masthead-nav">
-                        <li class="active"><a href="#">Demo</a></li>
-                        <li><a href="https://khipu.com/page/api">API Rest</a></li>
-                        <li><a href="https://github.com/khipu/lib-javascript">Biblioteca Javascript</a></li>
-                    </ul>
+
                 </div>
             </div>
 
             <div class="inner cover">
-                <h1 class="cover-heading">Llena los datos para tu compra.</h1>
+                <h1 style="font-family: 'Montserrat', sans-serif;" class="cover-heading">Ingresa tus datos</h1>
 
                 <form class="form-horizontal" role="form" action="demo-send.php" method="post">
                     <!-- Enviar valores obtenidos desde pagina externa para armar el pago --->
@@ -115,10 +112,7 @@ include('constants.php');
             </div>
 
             <div class="mastfoot">
-                <div class="inner">
-                    <p>Cover template for <a href="http://getbootstrap.com">Bootstrap</a>, by <a
-                            href="https://twitter.com/mdo">@mdo</a>.</p>
-                </div>
+                
             </div>
 
         </div>

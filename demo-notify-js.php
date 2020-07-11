@@ -51,7 +51,7 @@ try {
                 // file_put_contents("php://stderr", "paso message !!!".PHP_EOL);
                 // Insertar en BD:
                 $servername = "190.107.177.34";
-                $username = "producto_Samuel";
+                $username = "producto_cultura";
                 $password = "S@muel01";
                 $dbname = "producto_chile";
 
@@ -64,8 +64,12 @@ try {
                 
                 $nuevoIdPago = $response["payment_id"];
 
-                $sql = "INSERT INTO usuario (NombreUsuario,ClaveUsuario,direccion,celular,correo,infoPago) 
-                VALUES ('asd','asd','". $nuevoIdPago ."',123,'asd','". $idPago ."')";
+                $sql = "INSERT INTO `transaccion` (runComprador,codigoTransaccion,fechaTransaccion,
+                espectaculo_idEspectaculo,notification_token,receiver_id,bank,payer_name,payer_email,
+                responsible_user_email,payment_method) VALUES
+                (
+                    '18.987.021-3','asd123asd123asd123','23-01-2020',1,'asdasdasd','12','DemoBank','samuel','asda@jasda.con','asda@asjd.com','asdasd'
+                );";
                 
                 if ($conn->query($sql) === TRUE) {
                     echo "Registro insertado";
