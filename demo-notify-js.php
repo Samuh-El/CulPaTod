@@ -90,9 +90,11 @@ try {
         
         else {
             // receiver_id no coincide
+            echo "receiver_id no coincide";
         }
     } else {
         // Usar versión anterior de la API de notificación
+        echo "Usar versión anterior de la API de notificación";
     }
 } catch (\Khipu\ApiException $exception) {
     print_r($exception->getResponseObject());
