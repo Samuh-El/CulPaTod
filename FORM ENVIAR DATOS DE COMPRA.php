@@ -8,8 +8,8 @@
 <body>
     <!-- recibe los datos -->
     <h2>Formulario de registro</h2>
-
-    <form method="post" action="https://culturaparatodos.herokuapp.com">
+    
+    <form method="post" action="index.php">
         Titulo de la vola xdxd: <input type="text" name="titulo"><br>
         Monto: <input type="text" name="monto"><br>
         Descripción: <input type="text" name="descripcion"><br>

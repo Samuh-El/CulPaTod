@@ -14,54 +14,50 @@ include('constants.php');
 
     <title>Llena los datos para tu compra.</title>
 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+
     <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link href="css/bootstrap.min.css" rel="stylesheet"> -->
 
     <!-- Custom styles for this template -->
-    <link href="css/cover.css" rel="stylesheet">
-
-    <!-- Just for debugging purposes. Don't actually copy this line! -->
-    <!--[if lt IE 9]>
-    <script src="js/ie8-responsive-file-warning.js"></script><![endif]-->
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <!-- <link href="css/cover.css" rel="stylesheet"> -->
 </head>
 
-<body>
+<body style="background-color:black;">
 
 <?php
-    $titulo = $_POST['titulo'];
-    $monto = $_POST['monto'];
-    $descripcion = $_POST['descripcion'];
-    $idEspectaculo = $_POST['idEspectaculo'];
-    //echo "Titulo:" .$titulo."<br>Monto: ".$monto."<br>Descripcion: ".$descripcion."<br>ESPECTACULO: ".$idEspectaculo;
+    try
+    {
+        $titulo = $_POST['titulo'];
+        if ($titulo==null)
+        {
+            header('Location: pantallaError.php'); // RUTA DE PANTALLA DE ERROR AQUI
+        }
+        else
+        {
+            $monto = $_POST['monto'];
+            $descripcion = $_POST['descripcion'];
+            $idEspectaculo = $_POST['idEspectaculo'];
+            //echo "Titulo:" .$titulo."<br>Monto: ".$monto."<br>Descripcion: ".$descripcion."<br>ESPECTACULO: ".$idEspectaculo;
+        }
+    }
+    
+    catch (Exception $e)
+    {
+        header('Location: pantallaError.php'); // RUTA DE PANTALLA DE ERROR AQUI
+    }
 ?>
 
-<div class="site-wrapper">
 
-    <div class="site-wrapper-inner">
+<div class="container mt-5" >
 
-        <div class="cover-container">
-
-            <div class="masthead clearfix">
-                <div class="inner">
-                    <h3 class="masthead-brand">Comercio</h3>
-                    <ul class="nav masthead-nav">
-                        <li class="active"><a href="#">Demo</a></li>
-                        <li><a href="https://khipu.com/page/api">API Rest</a></li>
-                        <li><a href="https://github.com/khipu/lib-javascript">Biblioteca Javascript</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="inner cover">
-                <h1 class="cover-heading">Llena los datos para tu compra.</h1>
-
-                <form class="form-horizontal" role="form" action="demo-send.php" method="post">
+<div style="text-align:center;margin-left:20%;margin-right:20%;">
+<h4 style="color:white;font-weight: bold;">INGRESA TUS DATOS PARA CANCELAR TU TICKET</h4>
+<hr style="background-color: white;">
+</div>
+<div class="pt-4 pb-3 mt-5" style="background-color: #332C2C;margin-left:20%;margin-right:20%;">
+<form class="form-horizontal mt-3" role="form" action="demo-send.php" method="post">
                     <!-- Enviar valores obtenidos desde pagina externa para armar el pago --->
                     <input type="hidden" name="titulo" value="<?php echo $titulo; ?>">
                     <input type="hidden" name="monto" value="<?php echo $monto; ?>">
@@ -69,67 +65,79 @@ include('constants.php');
                     <input type="hidden" name="idEspectaculo" value="<?php echo $idEspectaculo; ?>">
 
                     <div class="form-group <?php echo $_REQUEST['invalid'] ? 'has-error' : ''; ?>">
-                        <label for="email" class="col-sm-4 control-label">Ingresa tu correo electr&oacute;nico</label>
-
-                        <div class="col-sm-8">
+                    <div style="margin-left:10%;margin-right:10%;">
+                    <h5  style="color:white;" for="email" >Ingresa tu correo electr&oacute;nico</h5>
+                    
+       <p style="color:rgb(173, 173, 173)">A este correo llegara el comprobante de pago</p>
+                        <div>
                             <input type="email" class="form-control" id="email" name="email" placeholder="mi@correo.cl">
                         </div>
+                    </div>
+
+                        
 
                     </div>
                     <div class="form-group">
-                        <label for="bankId" class="col-sm-4 control-label">Elige tu banco</label>
+                    <div style="margin-left:10%;margin-right:10%;">
+                    <h5  style="color:white;" for="bankId" >Selecciona tu pago para el pago</h5>
+                    
+       <p style="color:rgb(173, 173, 173)">Selecciona un banco de la lista proporcionada</p>
 
-                        <div class="col-sm-8">
-                            <select name="bankId" class="form-control" id="bankId">
-                                                               
-                                <?php
-                                $configuration = new Khipu\Configuration();
-                                $configuration->setReceiverId(RECEIVER_ID);
-                                $configuration->setSecret(SECRET);
-                                // $configuration->setDebug(true);
+<div>
+    <select name="bankId" class="form-control" id="bankId">
+                                       
+        <?php
+        $configuration = new Khipu\Configuration();
+        $configuration->setReceiverId(RECEIVER_ID);
+        $configuration->setSecret(SECRET);
+        // $configuration->setDebug(true);
 
-                                $client = new Khipu\ApiClient($configuration);
-                                $banksApi = new Khipu\Client\BanksApi($client);
+        $client = new Khipu\ApiClient($configuration);
+        $banksApi = new Khipu\Client\BanksApi($client);
 
-                                try {
-                                    $response = $banksApi->banksGet();
-                                    foreach ($response->getBanks() as $bank) {
-                                        echo "<option value=\"" . $bank->getBankId() . "\">" . $bank->getName()
-                                            . "</option>";
-                                    }
-                                } catch (\Khipu\ApiException $e) {
-                                    echo "Entro al catch";
-                                    echo print_r($e->getResponseBody(), TRUE);
-                                }
-                                ?>
+        try {
+            $response = $banksApi->banksGet();
+            foreach ($response->getBanks() as $bank) {
+                echo "<option value=\"" . $bank->getBankId() . "\">" . $bank->getName()
+                    . "</option>";
+            }
+        } catch (\Khipu\ApiException $e) {
+            echo "Entro al catch";
+            echo print_r($e->getResponseBody(), TRUE);
+        }
+        ?>
 
-                            </select>
-                        </div>
+    </select>
+</div>
+                    </div>
+                        
                     </div>
                     <div class="form-group">
-                        <div class="col-sm-offset-4 col-sm-10">
-                            <button type="submit" class="btn btn-primary">Revisar orden y pagar</button>
+                    <div class="mt-4" style="text-align:center">
+                            <!-- <button type="submit" class="btn btn-primary">Revisar orden y pagar</button> -->
+                            <button type="submit" class="btn btn-info" style="background-color: rgb(98, 110, 175);border:0px !important">REVISAR PARA PAGO</button>
                         </div>
                     </div>
                 </form>
-
-            </div>
-
-            <div class="mastfoot">
-                <div class="inner">
-                    <p>Cover template for <a href="http://getbootstrap.com">Bootstrap</a>, by <a
-                            href="https://twitter.com/mdo">@mdo</a>.</p>
-                </div>
-            </div>
-
-        </div>
-
-    </div>
-
 </div>
 
+               
+</div>
+            
+                
+
+            
+        
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/docs.min.js"></script>
+<!-- <script src="js/bootstrap.min.js"></script>
+<script src="js/docs.min.js"></script> -->
+
+<!-- JS, Popper.js, and jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+
 </body>
 </html>
