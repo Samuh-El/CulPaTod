@@ -6,6 +6,7 @@ include('constants.php');
 $titulo = $_POST['titulo'];
 $monto = $_POST['monto'];
 $descripcion = $_POST['descripcion'];
+$idEspectaculo = $_POST['idEspectaculo'];
 
 
 //echo "Titulo: ".$titulo."<br>Monto: ".$monto."<br>Descripcion: ".$descripcion;
@@ -31,7 +32,8 @@ try {
         "payer_email" => $_REQUEST['email'],
         "return_url" => RETURN_URL,
         "notify_url" => NOTIFY_URL,
-        "notify_api_version" => "1.3"
+        "notify_api_version" => "1.3",
+        "custom" => $idEspectaculo
     );
 
     $response = $payments->paymentsPost($titulo //Motivo de la compra

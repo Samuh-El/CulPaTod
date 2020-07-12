@@ -1,6 +1,5 @@
 <?php
 require __DIR__ . '/vendor/autoload.php';
-require __DIR__ . '/vendor/index.php';
 include('constants.php');
 
 /* Ver en consola log de heroku
@@ -11,7 +10,6 @@ $api_version = $_POST['api_version'];  // Parámetro api_version
 $notification_token = $_POST['notification_token']; //Parámetro notification_token
 //$idPago = $_GET['id']; // Obtener el id de pago generado
 $amount = 5000;
-$idEspectaculo = $_REQUEST['idEspectaculo'];
 
 try {
   
@@ -72,13 +70,15 @@ try {
                 $payment_methodDB = $response["payment_method"];
                 $run = $response["personal_identifier"];
                 $valorTransaccionDB = $response["amount"];
+                $idEspectaculoDB = $response["custom"];
+                file_put_contents("php://stderr", "ID ESPECTACULO ES: ".$response["custom"].PHP_EOL);
 
                 // Query a la DB
                 // $sql = "INSERT INTO usuario (NombreUsuario,ClaveUsuario,direccion,celular,correo,infoPago) 
                 // VALUES ('asd','asd','". $nuevoIdPago ."',123,'asd','". $idPago ."')";
                 $sql ="INSERT INTO transaccion (runComprador,codigoTransaccion,fechaTransaccion,espectaculo_idEspectaculo,notification_token,receiver_id,bank,payer_name,payer_email,responsible_user_email,payment_method,valorTransaccion) 
                 VALUES (
-                    '".$run."','".$payment_idDB."',CURRENT_TIMESTAMP,$idEspectaculo,'".$notification_tokenDB."','".$receiver_idDB."','".$bankDB."','".$payer_nameDB."','".$payer_emailDB."','".$responsible_user_mailDB."','".$payment_methodDB."','".$valorTransaccionDB."'
+                    '".$run."','".$payment_idDB."',CURRENT_TIMESTAMP,$idEspectaculoDB,'".$notification_tokenDB."','".$receiver_idDB."','".$bankDB."','".$payer_nameDB."','".$payer_emailDB."','".$responsible_user_mailDB."','".$payment_methodDB."','".$valorTransaccionDB."'
                 );";
                 
                 if ($conn->query($sql) === TRUE) {
