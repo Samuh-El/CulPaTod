@@ -34,11 +34,17 @@
 </div>
 <div class="pt-4 pb-3 mt-5 mb-5" style="background-color: #332C2C;">
 <div style="margin-left:10%;margin-right:10%;">
-<p style="color:rgb(173, 173, 173);text-align:center">Se enviara un correo con el comprobante de pago, similar a la siguiente imagen</p>
+<h6 class="mb-3" style="color:white;text-align:center">Se enviará un correo con el comprobante de pago, similar a la siguiente imagen</h6>
 <img style="height: 100%;
    width: 100%;" class="mb-4" src="http://www.imagenespc.productochile.cl/ejemploCorreo.jpg" alt="">
-<p style="color:rgb(173, 173, 173)">Al momento de ingresar a la sala el dia y hora del evento, se solicitara el <span style="color:red !important;">codigo de verificacion sin guiones</span> y el correo electronico que proporcionaste para realizar esta compra.</p>
-<h6 style="color:white">Recuerda que sin estos datos no podras entrar, por lo que es importante que no borres por error el comprobante de pago de tu bandeja.</h6>
+   <ul>
+   <li style="color: white"><h6 style="color:white">Al momento de ingresar a la sala el día y hora del evento, se solicitará el <span style="color:rgb(216, 133, 133) !important;">código de verificación sin guiones</span> y el correo electrónico que proporcionaste para realizar esta compra.</h6></li>
+   <li style="color: white"><h6 style="color:white">Recuerda que sin estos datos no podras entrar, por lo que es importante que no borres por error el comprobante de pago de tu bandeja.</h6></li>
+   <li style="color: white"><h6 style="color:white">Verifique su carpeta de spam en caso de que la configuración de tu correo no permita que llegue a la bandeja de entrada.</h6></li>
+   </ul>
+
+
+
 <form action="http://culturaparatodos.cl/#/">
 	<div class="mt-4 mb-4" style="text-align:center">
                            
