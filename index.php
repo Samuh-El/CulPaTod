@@ -53,7 +53,7 @@ include('constants.php');
 <div class="container mt-5" >
 
 <div style="text-align:center;margin-left:20%;margin-right:20%;">
-<h4 style="color:white;font-weight: bold;">INGRESA TUS DATOS PARA CANCELAR TU TICKET</h4>
+<h4 style="color:white;font-weight: bold;">INGRESA TUS DATOS PARA PAGAR TU TICKET</h4>
 <hr style="background-color: white;">
 </div>
 <div class="pt-4 pb-3 mt-5" style="background-color: #332C2C;margin-left:20%;margin-right:20%;">
@@ -79,7 +79,7 @@ include('constants.php');
                     </div>
                     <div class="form-group">
                     <div style="margin-left:10%;margin-right:10%;">
-                    <h5  style="color:white;" for="bankId" >Selecciona tu pago para el pago</h5>
+                    <h5  style="color:white;" for="bankId" >Selecciona tu banco para el pago</h5>
                     
        <p style="color:rgb(173, 173, 173)">Selecciona un banco de la lista proporcionada</p>
 
