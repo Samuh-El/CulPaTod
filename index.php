@@ -13,7 +13,7 @@ include('constants.php');
     <link rel="shortcut icon" href="images/favicon.ico">
 
     <title>Llena los datos para tu compra.</title>
-
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
 
@@ -24,7 +24,7 @@ include('constants.php');
     <!-- <link href="css/cover.css" rel="stylesheet"> -->
 </head>
 
-<body style="background-color:black;">
+<body>
 
 <?php
     try

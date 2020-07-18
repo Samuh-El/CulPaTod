@@ -1,0 +1,10 @@
+body{
+     
+     overflow-x: hidden !important;
+     width:100%;
+     height: 100%;
+     background-image: url(../images/pruebaFondo.jpg);
+     background-repeat: no-repeat; 
+     background-attachment: fixed;
+     background-size: cover;
+ }
