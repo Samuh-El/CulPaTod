@@ -1,14 +1,14 @@
 <?php
-    $idEspectaculo = $_REQUEST['idEspectaculo'];
-    $valorTransaccion = $_REQUEST['valorTransaccion'];
-    $nombreProducto = $_REQUEST['nombreProducto'];
+    // $idEspectaculo = $_REQUEST['idEspectaculo'];
+    // $valorTransaccion = $_REQUEST['valorTransaccion'];
+    // $nombreProducto = $_REQUEST['nombreProducto'];
     
-    if ($idEspectaculo== null || $idEspectaculo=="" || $idEspectaculo==0 ||
-    $valorTransaccion== null || $valorTransaccion=="" || $valorTransaccion==0 ||
-    $nombreProducto== null || $nombreProducto=="" || $nombreProducto==0 )
-    {
-         header('Location: pantallaError.php');
-    }
+    // if ($idEspectaculo== null || $idEspectaculo=="" || $idEspectaculo==0 ||
+    // $valorTransaccion== null || $valorTransaccion=="" || $valorTransaccion==0 ||
+    // $nombreProducto== null || $nombreProducto=="" || $nombreProducto==0 )
+    // {
+    //      header('Location: pantallaError.php');
+    // }
     //echo "id espectaculo: ".$idEspectaculo."<br>valor transaccion: ".$valorTransaccion."<br>Nombre producto: ".$nombreProducto;
 ?>
 <!DOCTYPE html>
