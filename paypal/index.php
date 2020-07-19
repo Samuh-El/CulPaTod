@@ -1,16 +1,29 @@
 <?php
-    $idEspectaculo = $_POST['idEspectaculo'];
-    $valorTransaccion = $_POST['valorTransaccion'];
-    $nombreProducto = $_POST['nombreProducto'];
+    $idEspectaculo = $_REQUEST['idEspectaculo'];
+    $valorTransaccion = $_REQUEST['valorTransaccion'];
+    $nombreProducto = $_REQUEST['nombreProducto'];
+    $valorint;
+    $idEspectaculoInt;
+
+    try {
+        $valorint=(int)$valorTransaccion;
+        $idEspectaculoInt=(int)$idEspectaculo;
+        if($valorint<=0.9 || $idEspectaculoInt<=0){
+            header('Location: pantallaError.php');
+        }
+    } catch (Exception $e) {
+        header('Location: pantallaError.php');
+    }
     
-    if ($idEspectaculo== null || $idEspectaculo=="" || $idEspectaculo==0 ||
-    $valorTransaccion== null || $valorTransaccion=="" || $valorTransaccion==0 ||
-    $nombreProducto== null || $nombreProducto=="" || $nombreProducto==0 )
+    if ($idEspectaculo== null || $idEspectaculo=="" || $idEspectaculo=='0' ||
+    $valorTransaccion== null || $valorTransaccion=="" || $valorTransaccion=='0' ||
+    $nombreProducto== null || $nombreProducto=="" || $nombreProducto=='0')
     {
          header('Location: pantallaError.php');
     }
     //echo "id espectaculo: ".$idEspectaculo."<br>valor transaccion: ".$valorTransaccion."<br>Nombre producto: ".$nombreProducto;
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>

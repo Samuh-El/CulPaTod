@@ -4,10 +4,22 @@ include('config.php');
 $idEspectaculo = $_REQUEST['idEspectaculo'];
 $valorTransaccion = $_REQUEST['valorTransaccion'];
 $nombreProducto = $_REQUEST['nombreProducto'];
+$valorint;
+$idEspectaculoInt;
 
-if ($idEspectaculo== null || $idEspectaculo=="" || $idEspectaculo==0 ||
-$valorTransaccion== null || $valorTransaccion=="" || $valorTransaccion==0 ||
-$nombreProducto== null || $nombreProducto=="" || $nombreProducto==0 )
+try {
+    $valorint=(int)$valorTransaccion;
+    $idEspectaculoInt=(int)$idEspectaculo;
+    if($valorint<=0.9 || $idEspectaculoInt<=0){
+        header('Location: pantallaError.php');
+    }
+} catch (Exception $e) {
+    header('Location: pantallaError.php');
+}
+
+if ($idEspectaculo== null || $idEspectaculo=="" || $idEspectaculo=='0' ||
+$valorTransaccion== null || $valorTransaccion=="" || $valorTransaccion=='0' ||
+$nombreProducto== null || $nombreProducto=="" || $nombreProducto=='0')
 {
      header('Location: pantallaError.php');
 }
