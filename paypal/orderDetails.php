@@ -55,7 +55,7 @@
 								<img style="height: 100%;
 								width: 100%;" class="mb-4" src="http://www.imagenespc.productochile.cl/ejemploCorreo.jpg" alt=""> 
 									<ul>
-										<li style="color: white"><h6 style="color:white">Al momento de ingresar a la sala el día y hora del evento, se solicitará el <span style="color:rgb(216, 133, 133) !important;">código de verificación sin guiones</span> y el correo electrónico que proporcionaste para realizar esta compra.</h6></li>
+										<li style="color: white"><h6 style="color:white">Al momento de ingresar a la sala el día y hora del evento, se solicitará el <span style="color:rgb(216, 133, 133) !important;">código de verificación CON guiones</span> y el correo electrónico que proporcionaste para realizar esta compra.</h6></li>
 										<li style="color: white"><h6 style="color:white">Recuerda que sin estos datos no podras entrar, por lo que es importante que no borres por error el comprobante de pago de tu bandeja.</h6></li>
 										<li style="color: white"><h6 style="color:white">Verifique su carpeta de spam en caso de que la configuración de tu correo no permita que llegue a la bandeja de entrada.</h6></li>
 									</ul>
