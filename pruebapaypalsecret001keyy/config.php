@@ -1,7 +1,7 @@
 <?php
 // 0 activa modo prueba, 1 para valor de producción
 
-define('ProPayPal', 0);
+define('ProPayPal', 1);
 if(ProPayPal){
 	define("PayPalClientId", "AVaNsxw5yj0CKf9vfNo0Nnx-slAracjCnT_HGlopLT8mY9-kUbXdbx8d8WBYbKKhf6kAFPaNHM823kS6");
 	define("PayPalSecret", "EIuaMlOcrUT6pEjJtP9Ni3yvLQTyDao5g8UB4KS22VfiXCfGk7iOQwEnVquzSsOJbVl6QvrNuIQ3lrQ4");
