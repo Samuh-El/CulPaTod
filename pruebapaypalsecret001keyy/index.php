@@ -3,11 +3,12 @@
 <script>
   paypal.Button.render({
     // Configure environment
-    env: 'sandbox', // aqui cambiar sandbox o production dependiendo que se quiera
+    env: 'production', // aqui cambiar sandbox o production dependiendo que se quiera
     client: {
       sandbox: 'Ac8wN2B7UvaIIK_FYkGr6JWy9_zII_Jtfrpx_zqs1z8Yrh9GqtxgerAZ8cTqznNjX8sdpTS8qfnw21fc',
-      production: 'demo_production_client_id'
+      production: 'AVaNsxw5yj0CKf9vfNo0Nnx-slAracjCnT_HGlopLT8mY9-kUbXdbx8d8WBYbKKhf6kAFPaNHM823kS6'
     },
+
     // Customize button (optional)
     locale: 'en_US',
     style: {
@@ -28,7 +29,7 @@
             currency: 'USD',
           },
           description: 'Ticket de evento en Cultura Para Todos.',
-            custom:'123' // cuando procese el pago envie info del pago procesado
+            custom:'valor_custom' // cuando procese el pago envie info del pago procesado
         }]
       });
     },
