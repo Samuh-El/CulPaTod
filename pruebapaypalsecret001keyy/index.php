@@ -27,7 +27,7 @@
           amount: {
             total: '1',
             currency: 'USD',
-            payment_instruction:'payment_instruction1'
+            //payment_instruction:'payment_instruction1'
           },
             payment_instruction: 'payment_instruction2',
             description: 'Ticket de evento en Cultura Para Todos.',
