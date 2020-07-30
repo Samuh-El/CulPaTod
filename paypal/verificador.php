@@ -92,7 +92,7 @@
         `fechaTransaccion`, `espectaculo_idEspectaculo`, `notification_token`, 
         `receiver_id`, `bank`, `payer_name`, 
         `payer_email`, `responsible_user_email`, `payment_method`, 
-        `valorTransaccion`, `orderID`, 
+        `valorTransaccionUSD`, `orderID`, 
         `intent`, `IDtransaccionREAL`) 
         VALUES 
         (NULL, 'paypal', '".$_REQUEST['idRandom']."', 
